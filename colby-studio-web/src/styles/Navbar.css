@@ -1,0 +1,157 @@
+.navbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Apple Glassmorphism */
+  background: rgba(219, 219, 219, 0.4);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+
+  /* Groups this element's paint context (blur fix) */
+  isolation: isolate;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.navbar.menu-closed {
+  border-bottom-color: transparent;
+}
+
+.navbar .leftSide {
+  flex: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 40px;
+}
+
+.navbar .center {
+  flex: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.3, 1), opacity 0.3s ease 0.15s;
+}
+
+.navbar .rightSide {
+  flex: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 40px;
+}
+
+.navbar .contact-wrapper {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.3s ease 0.15s;
+}
+
+/* --- SLIDE-OUT & SLIDE-IN ANIMATION --- */
+
+/* OPEN */
+.navbar .center#open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+/* CLOSED */
+.navbar .center#close {
+  transform: translateX(30%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* --- LINKS --- */
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 20px;
+  font-size: 15px;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+/* Center links fill the navbar's full height so the line sits at the bottom */
+.navbar .center a {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+
+  /* Two underlines stacked: blue (hover) on top, white (selected) underneath */
+  background-image:
+    linear-gradient(#3b82f6, #3b82f6),
+    linear-gradient(#ffffff, #d4d5d5);
+  background-repeat: no-repeat;
+  background-position: left bottom, left bottom;
+  background-size: 0% 2px, 0% 2px;
+  transition: background-size 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease;
+}
+
+/* Hover: the blue line grows across */
+.navbar .center a:hover {
+  background-size: 100% 2px, 0% 2px;
+}
+
+/* Selected page: the white line is always showing */
+.navbar .center a.active {
+  background-size: 0% 2px, 100% 2px;
+}
+
+/* Hovering the selected page: blue grows over the white */
+.navbar .center a.active:hover {
+  background-size: 100% 2px, 100% 2px;
+}
+
+/* --- TOGGLE BUTTON --- */
+
+.navbar .toggle-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  padding: 0;
+  margin-left: 25px;
+  white-space: nowrap;
+  z-index: 1001;
+  transition: opacity 0.2s ease;
+}
+
+.navbar .toggle-btn:hover {
+  opacity: 0.6;
+}
+
+.navbar.hidden-nav {
+  display: none !important;
+  pointer-events: none;
+}
+
+@media only screen and (max-width: 900px) {
+  .leftSide,
+  .rightSide {
+    display: none !important;
+  }
+}
