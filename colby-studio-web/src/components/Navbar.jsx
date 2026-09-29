@@ -28,7 +28,7 @@ function Navbar() {
   return (
     <div className={`navbar ${!openLinks ? 'menu-closed' : ''} ${isHidden ? 'hidden-nav' : ''}`}>
       <div className='leftSide'> 
-        <Link to="/home"> COLBY STUDIO </Link>
+        <Link to="/"> COLBY STUDIO </Link>
       </div>
       
      <div className='center' id={openLinks ? "open" : "close"}>
