@@ -1,52 +1,47 @@
 .footer {
-    background:var(--accent-bg);
-    height:10vh;
-    width:100%;
-    display: flex;
-    justify-content:center;
-    align-items: center;
+  background: var(--accent-bg);
+  width: 100%;
 }
 
-.copyright{
-  flex-direction: column;
+/* --- BOTTOM FOOTER --- */
+
+.bottom-footer {
+  min-height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-sizing: border-box;
+  border-top: 1px solid var(--subtle-gray);
 }
 
-.socialMedia svg {
-  color: var(--grey);
-  margin: 5px;
-  font-size: 40px;
-  cursor: pointer;
-}
-
-.socialMedia  {
-
-  flex: 50%;
-  height: 100%;
+.bottom-footer .links {
   display: flex;
   align-items: center;
-  justify-content: flex-end; 
-  padding-right: 30px;
+  gap: 20px;
 }
 
-
-.footer p {
-  color: #828282;
-  flex: 50%;
-  height: 100%;
+.bottom-footer .copyright {
+  margin-left: auto;
   display: flex;
-  align-items: center;
-  padding-left: 0; 
-  margin-left: 50px; 
+  align-items: center;   /* lines the icon up with the text */
+  gap: 16px;             /* space between the copyright text and the icon */
+}
+
+.bottom-footer p {
+  color: var(--text-gray);
+  margin: 0;
   font-size: 15px;
 }
 
-
-.footer a {
-  color: #828282;
-  height: 100%;
-  display: flex;
+.bottom-footer a {
+  color: var(--text-gray);
+  display: inline-flex;
   align-items: center;
-  padding-left: 0; 
-  margin-right: 10px;
   font-size: 15px;
+  text-decoration: none;
+}
+
+.bottom-footer a:hover {
+  color: white;
 }

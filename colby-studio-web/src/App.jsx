@@ -29,8 +29,10 @@ function App() {
       <Router>
         <ScrollToTop />
         <Navbar />
-        <AnimatedRoutes className = 'pages'/>
-        <Footer />
+        <div className='pages'>
+          <AnimatedRoutes />
+          <Footer />
+        </div>
       </Router>
     </div>
   )

@@ -11,17 +11,28 @@ import {Link} from 'react-router-dom';
 function Footer() {
   return (
     <div className='footer'>
+    
+        <div className='top-footer'>
+            <div className='short-blurb'>
 
-    <div className='copyright'>    
-        <p><Link to ='/privacy-policy'>Privacy Policy</Link> &copy; {new Date().getFullYear()} East Coast Dragons</p>
-      </div>
-      <div className='socialMedia'> 
-        <a href="https://www.instagram.com/eastcoastdragons/?hl=en" target="_blank" rel="noopener noreferrer">
-            <FaInstagram size={24} />
-        </a>
+            </div>
 
-      </div>
+            <div className='sub-pages'>
+                
+            </div>
+        </div>
 
+        <div className='bottom-footer'>
+            <div className='links'>    
+                <p><Link to ='/privacy-policy'>Privacy Policy</Link> </p>
+            </div>
+            <div className='copyright'> 
+                <p>&copy; {new Date().getFullYear()} East Coast Dragons</p>
+                <a href="https://www.instagram.com/thestudioatcolby/?hl=en" target="_blank" rel="noopener noreferrer">
+                    <FaInstagram size={24} />
+                </a>
+            </div>
+        </div>
     </div>
   )
 }
