@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'; 
 import { Navigate } from 'react-router-dom';
 import './App.css'
@@ -28,7 +29,8 @@ function App() {
       <Router>
         <ScrollToTop />
         <Navbar />
-        <AnimatedRoutes />
+        <AnimatedRoutes className = 'pages'/>
+        <Footer />
       </Router>
     </div>
   )

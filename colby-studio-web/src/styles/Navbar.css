@@ -5,17 +5,8 @@
   flex-direction: row;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  /* Apple Glassmorphism */
-  background: rgba(219, 219, 219, 0.4);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  background: linear-gradient(var(--accent), var(--accent));
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-
-  backface-visibility: hidden;
-  will-change: transform, opacity;
-
-  /* Groups this element's paint context (blur fix) */
-  isolation: isolate;
 
   position: fixed;
   top: 0;
@@ -100,7 +91,7 @@
 
   /* Two underlines stacked: blue (hover) on top, white (selected) underneath */
   background-image:
-    linear-gradient(#3b82f6, #3b82f6),
+  linear-gradient(#ffffff, #d4d5d5),
     linear-gradient(#ffffff, #d4d5d5);
   background-repeat: no-repeat;
   background-position: left bottom, left bottom;
