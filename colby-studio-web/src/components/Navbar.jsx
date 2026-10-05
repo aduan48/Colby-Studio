@@ -34,7 +34,7 @@ function Navbar() {
      <div className='center' id={openLinks ? "open" : "close"}>
         <NavLink to="/" className={() => (isHome ? 'active' : '')}> HOME </NavLink>
         <NavLink to="/about"> ABOUT </NavLink>
-        <NavLink to="/projects"> PROJECTS </NavLink>
+        <NavLink to="/booking"> BOOK US </NavLink>
      </div>
             
       <div className='rightSide'> 

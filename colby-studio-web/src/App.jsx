@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import { Navigate } from 'react-router-dom';
 import './App.css'
 import Home from './pages/Home'
+import Booking from './pages/Booking'
 import { AnimatePresence } from 'framer-motion';
 import ScrollToTop from './ScrollToTop';
 
@@ -16,6 +17,7 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
+        <Route path="/booking" element={<Booking />} />
       </Routes>
     </AnimatePresence>
   );

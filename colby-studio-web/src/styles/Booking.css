@@ -1,0 +1,153 @@
+/* ---------- Theme ---------- */
+.booking {
+
+  max-width: 440px;
+  margin: 48px auto;
+  padding: 28px;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.booking__title {
+  margin: 0 0 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-clip: text;
+  color: white;
+}
+
+/* ---------- Calendar (react-day-picker v9 variables) ---------- */
+.booking__calendar {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: 14px;
+  color: black;
+}
+
+.booking .rdp-root {
+  --rdp-accent-color: var(--accent);
+  --rdp-accent-background-color: rgba(124, 92, 255, 0.15);
+  --rdp-day-height: 40px;
+  --rdp-day-width: 40px;
+  --rdp-day_button-height: 38px;
+  --rdp-day_button-width: 38px;
+  --rdp-today-color: var(--accent);
+  margin: 0;
+}
+
+.booking .rdp-selected .rdp-day_button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+
+.booking .rdp-disabled {
+  opacity: 0.6;
+}
+
+/* ---------- Time slots ---------- */
+.booking__slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.slot {
+  padding: 10px 0;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.slot:hover:not(:disabled) {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.slot--selected {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+}
+
+.slot:disabled {
+  opacity:0.25;
+  text-decoration: line-through;
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- Form ---------- */
+.booking__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+  animation: fadeUp 0.25s ease-out;
+}
+
+.booking__form input {
+  padding: 12px 14px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.booking__form input::placeholder {
+  color: var(--muted);
+}
+
+.booking__form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.25);
+}
+
+.booking__submit {
+  padding: 13px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.booking__submit:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* ---------- Status ---------- */
+.booking__status {
+  margin: 18px 0 0;
+  padding: 10px 14px;
+  background: var(--bg);
+  border-left: 3px solid var(--accent-2);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .booking { margin: 16px; padding: 20px; }
+}
