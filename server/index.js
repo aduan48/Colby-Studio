@@ -36,19 +36,30 @@ mailer.verify()
 const escapeHtml = s => s.replace(/[&<>"']/g, c =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-// Business rules: 9am–5pm, 30-min slots (business's local time)
-const OPEN = 9, CLOSE = 17, SLOT_MIN = 240;
+// all open slots
+const shifts = require("./shifts");
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 
-//gets all the slots for a selcted date
-function slotsForDate(date) {
-  const slots = [];
-  for (let m = OPEN * 60; m < CLOSE * 60; m += SLOT_MIN) {
-    const hh = String(Math.floor(m / 60)).padStart(2, '0'); //hours
-    const mm = String(m % 60).padStart(2, '0'); //minutes
-    slots.push(`${date}T${hh}:${mm}`); //makes ths lots 
-  }
-  return slots;
+// "2026-10-05" -> slots for that day
+function slotsForDate(dateStr) {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const date = new Date(y, m - 1, d);                     // local time, avoids the UTC bug
+  if (date.getMonth() !== m - 1) return [];               // rejects dates like 2026-02-31
+
+  const day = DAYS[date.getDay()];
+
+  return shifts
+    .filter(s => s.Day === day)
+    .map(s => {
+      const hh = String(s["Time-Start"]).padStart(2, "0");
+      return {
+        start: `${dateStr}T${hh}:00`,                     // e.g. "2026-10-05T20:00"
+        length: s.Length,
+        manager: s.Manager,
+        managerEmail: s.Email,
+      };
+    });
 }
 
 // GET /api/availability?date=2026-10-05
@@ -63,18 +74,20 @@ app.get('/api/availability', (req, res) => {
     db.prepare('SELECT start_time FROM bookings WHERE start_time LIKE ?')//sql query
       .all(`${date}%`).map(r => r.start_time)
   );
-  res.json(slotsForDate(date).map(start => 
-    ({ start, available: !booked.has(start) })
-  ));
+  res.json(slotsForDate(date).map(slot => ({
+    start: slot.start,
+    length: slot.length,
+    manager: slot.manager,
+    available: !booked.has(slot.start),
+  })));
 });
 
 // POST /api/bookings  { start, name, email }
 app.post('/api/bookings', async (req, res) => {
-  const { start, name, email } = req.body ?? {};
   const date = start?.slice(0, 10);
+  const slot = date ? slotsForDate(date).find(s => s.start === start) : null;
 
-  if (!date || !slotsForDate(date).includes(start) || !name?.trim() ||
-      !/^\S+@\S+\.\S+$/.test(email ?? '')) {
+  if (!slot || !name?.trim() || !/^\S+@\S+\.\S+$/.test(email ?? '')) {
     return res.status(400).json({ error: 'Invalid booking details' });
   }
 
