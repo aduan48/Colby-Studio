@@ -37,7 +37,7 @@ const escapeHtml = s => s.replace(/[&<>"']/g, c =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 // all open slots
-const shifts = require("./shifts");
+import shifts from "./shifts.js";
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 

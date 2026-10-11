@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     "Manager": "Anna Nelson",
     "Day": "Sun",
