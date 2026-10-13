@@ -1,5 +1,5 @@
 .footer {
-  background: var(--accent-bg);
+  background: var(--accent-dark);
   width: 100%;
 }
 
@@ -29,13 +29,13 @@
 }
 
 .bottom-footer p {
-  color: var(--text-gray);
+  color: var(--text-gray-light);
   margin: 0;
   font-size: 15px;
 }
 
 .bottom-footer a {
-  color: var(--text-gray);
+  color: var(--text-gray-light);
   display: inline-flex;
   align-items: center;
   font-size: 15px;

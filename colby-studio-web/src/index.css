@@ -1,16 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root {
-  --text: #ffffff;
-  --text-h: #ffffff;
-  --text-gray: #828282;
-  --subtle-gray: #82828226;
-  --bg: #000000;
-  --bg-secondary: white;
+  --text: #000000;
+  --text-h: #000000;
+  --text-gray: #82828260;
+  --text-gray-light: #bababa;
+  --subtle-gray: #9c9c9c;
+  --bg: white;
+  --bg-secondary: black;
   --border: #1f1f1f;
   --code-bg: #141414;
   --accent: #3b82f6;
-  --accent-bg: rgba(59, 130, 246, 0.15);
+  --accent-2: #75a6f6;
+  --accent-bg: rgba(59, 130, 246, 0.5);
+  --accent-dark: #163882;
   --accent-border: rgba(59, 130, 246, 0.5);
   --social-bg: rgba(31, 31, 31, 0.5);
   --shadow:
@@ -29,6 +32,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 
   @media (max-width: 1024px) {
     font-size: 16px;
