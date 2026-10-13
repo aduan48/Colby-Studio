@@ -129,9 +129,9 @@ app.post('/api/bookings', async (req, res) => {
     return res.status(500).json({ error: 'Server error' });
   }
 
-  // Booking is saved; a failed email shouldn't undo it
+  // Booking is saved;\
   const when = start.replace('T', ' at ');
-  const nl2br = s => escapeHtml(s).replace(/\n/g, '<br>');
+  const nl2br = s => escapeHtml(s).replace(/\n/g, '<br>'); //nl2br stands for “newline to <br>”. It’s a small helper that gets text ready to display in an HTML email.
   const details = `
     <p><b>When:</b> ${when} (${slot.length} hr)<br>
        <b>Music major/minor:</b> ${cleanMajor}<br>
