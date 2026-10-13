@@ -2,7 +2,6 @@
 
 .booking-page {
   min-height: 90vh;
-  padding-top: 5px;
 }
 
 .booking {
@@ -113,6 +112,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
   gap: 10px;
+  padding: 0 6px;
 }
 
 .booking__empty {

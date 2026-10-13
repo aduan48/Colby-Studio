@@ -133,7 +133,7 @@ export default function Booking() {
                   disabled={!s.available}
                   onClick={() => setSelected(s.start)}
                 >
-                  {s.start.slice(11, 16)}
+                  {s.start.slice(11, 16)}  <br /> {s.manager}
                 </button>
               ))}
             </div>

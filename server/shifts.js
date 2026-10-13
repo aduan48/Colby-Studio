@@ -7,7 +7,7 @@ export default [
     "Length": 4,
   },
   {
-    "Manager": "Sharvil Bijuma;;a",
+    "Manager": "Sharvil Bijumalla",
     "Day": "Mon",
     "Email": "sbijum28@colby.edu",
     "Time-Start": 20,
