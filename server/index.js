@@ -18,20 +18,14 @@ db.exec(`
     start_time TEXT NOT NULL UNIQUE,   -- prevents double booking
     name TEXT NOT NULL,
     email TEXT NOT NULL,
+    music_major TEXT NOT NULL DEFAULT 'undecided',
+    to_accomplish TEXT NOT NULL,
+    equipment TEXT,
+    reference_tracks TEXT,
     created_at TEXT DEFAULT CURRENT_TIMESTAMP
   )
 `);
 
-// Add the new columns to an existing database (safe to run every startup)
-const existingCols = db.prepare('PRAGMA table_info(bookings)').all().map(c => c.name);
-for (const [col, type] of [
-  ['music_major', 'TEXT'],
-  ['to_accomplish', 'TEXT'],
-  ['equipment', 'TEXT'],
-  ['reference_tracks', 'TEXT'],
-]) {
-  if (!existingCols.includes(col)) db.exec(`ALTER TABLE bookings ADD COLUMN ${col} ${type}`);
-}
 
 // Gmail sender
 const mailer = nodemailer.createTransport({
@@ -97,6 +91,11 @@ app.get('/api/availability', (req, res) => {
 const MUSIC_OPTIONS = ['major', 'minor', 'undecided', 'neither'];
 const clip = (s, max) => String(s ?? '').trim().slice(0, max); // trims + caps length
 
+const SECRETARY_EMAIL = "ajduan29@colby.edu"; //"zcpale29@colby.edu"
+
+const STUDIO_EMAIL = process.env.STUDIO_EMAIL;
+
+
 // POST /api/bookings  { start, name, email, musicMajor, toAccomplish, equipment, referenceTracks }
 app.post('/api/bookings', async (req, res) => {
   const { start, name, email, musicMajor, toAccomplish, equipment, referenceTracks } = req.body ?? {};
@@ -141,28 +140,28 @@ app.post('/api/bookings', async (req, res) => {
 
   try {
     await mailer.sendMail({
-      from: `Colby Studio <${process.env.GMAIL_USER}>`,
-      to: cleanEmail,
+      from: `Studio at Colby <${process.env.STUDIO_EMAIL}}>`,
+      replyTo: STUDIO_EMAIL,
+      to: cleanEmail, 
+      cc: [slot.managerEmail || process.env.GMAIL_USER, SECRETARY_EMAIL],
       subject: 'Your studio booking is confirmed',
       html: `<p>Hi ${escapeHtml(cleanName)},</p>
              <p>You're booked for <b>${when}</b> with ${escapeHtml(slot.manager)}.</p>
              ${details}`,
     });
 
-    // Let the studio manager on that shift know what's coming
-    await mailer.sendMail({
-      from: `Colby Studio <${process.env.GMAIL_USER}>`,
-      to: slot.managerEmail || process.env.GMAIL_USER,
-      cc: process.env.GMAIL_USER,
-      replyTo: cleanEmail,
-      subject: `New booking: ${cleanName}, ${when}`,
-      html: `<p><b>${escapeHtml(cleanName)}</b> (${escapeHtml(cleanEmail)}) booked a session.</p>${details}`,
-    });
   } catch (e) {
     console.error('Email failed:', e);
   }
 
   res.status(201).json({ ok: true });
+});
+
+
+// POST /api/eventbookings  { start, name, email, musicMajor, toAccomplish, equipment, referenceTracks }
+app.post('/api/eventbookings', async (req, res) => {
+
+
 });
 
 app.listen(3001, () => console.log('API on :3001'));

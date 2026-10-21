@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'; 
 import { Navigate } from 'react-router-dom';
+import Request from './pages/Request'
 import './App.css'
 import Home from './pages/Home'
 import Booking from './pages/Booking'
@@ -18,6 +19,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/booking" element={<Booking />} />
+        <Route path="/request" element={<Request />} />
       </Routes>
     </AnimatePresence>
   );

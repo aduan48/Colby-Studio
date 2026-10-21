@@ -16,7 +16,7 @@ export default [
   {
     "Manager": "Henry Olson",
     "Day": "Tue",
-    "Email": "hwolson27@colby.edu",
+    "Email": "hwolso27@colby.edu",
     "Time-Start": 16,
     "Length": 4,
   },
@@ -42,9 +42,16 @@ export default [
     "Length": 4,
   },
   {
+    "Manager": "Alex Duan",
+    "Day": "Thu",
+    "Email": "ajduan29@colby.edu",
+    "Time-Start": 20,
+    "Length": 4,
+  },
+  {
     "Manager": "Rafi Aronson",
     "Day": "Fri",
-    "Email": "rkaronson27@colby.edu",
+    "Email": "rkaron27@colby.edu",
     "Time-Start": 15,
     "Length": 4,
   },
