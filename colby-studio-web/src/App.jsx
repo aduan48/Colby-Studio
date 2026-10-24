@@ -6,6 +6,7 @@ import { Navigate } from 'react-router-dom';
 import Request from './pages/Request'
 import './App.css'
 import Home from './pages/Home'
+import BookingsPage from './pages/BookingsPage'
 import Booking from './pages/Booking'
 import { AnimatePresence } from 'framer-motion';
 import ScrollToTop from './ScrollToTop';
@@ -18,8 +19,9 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
-        <Route path="/booking" element={<Booking />} />
-        <Route path="/request" element={<Request />} />
+        <Route path="/booking" element={<BookingsPage />} />
+        <Route path="/studio-booking" element={<Booking />} />
+        <Route path="/special-request" element={<Request />} />
       </Routes>
     </AnimatePresence>
   );
