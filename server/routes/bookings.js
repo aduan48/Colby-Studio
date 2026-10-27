@@ -6,7 +6,7 @@ import { slotsForDate } from '../slots.js';
 const router = Router();
 
 const MUSIC_OPTIONS = ['major', 'minor', 'undecided', 'neither'];
-const SECRETARY_EMAIL = 'ajduan29@colby.edu'; // "zcpale29@colby.edu"
+const SECRETARY_EMAIL = 'ajduan29@colby.edu'; //process.env.SECRETARY_EMAIL// "zcpale29@colby.edu"
 const clip = (s, max) => String(s ?? '').trim().slice(0, max);
 const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL; 
 

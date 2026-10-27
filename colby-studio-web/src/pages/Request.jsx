@@ -30,7 +30,7 @@ export default function Request() {
   const [dayStr, setDayStr] = useLocalStorage('request:day', null);
   const day = dayStr ? new Date(dayStr) : undefined;
 
-  const [time, setTime] = useLocalStorage('request:time', '');
+  const [selected, setSelected] = useLocalStorage('request:selected', null);
   const [status, setStatus] = useState('');                       // ← was missing
   const [form, setForm] = useLocalStorage('request:form', {
     start_time: '',
@@ -45,13 +45,16 @@ export default function Request() {
 
   useEffect(() => {
     const today = new Date(new Date().toDateString());
-    if (day && day < today) setDayStr(null);
+    if (day && day < today){
+        setSelected(null);
+        setDayStr(null);
+    } 
   }, []);
 
   /** Only clear the chosen time when the user actually picks a new day */
   const pickDay = (d) => {
+    console.log('picked', d);
     setDayStr(d ? d.toISOString() : null);
-    setSelected(null);
     setStatus('');
   };
 
@@ -62,23 +65,25 @@ export default function Request() {
 
   const book = async (e) => {
     e.preventDefault();
-    setStatus('Booking…');
+    setStatus('Sending request…');
+
     const res = await fetch('/api/eventbookings', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ start: selected, ...form }),
+      body: JSON.stringify({ date: format(selected, 'yyyy-MM-dd'), ...form }),
     });
-    const data = await res.json();
+    const data = await res.json().catch(() => ({}));
 
     if (res.ok) {
-      setStatus('Booked! Check your email.');
-      setSelected(null);
+      setStatus('Request sent! Check your email.');
       setDayStr(null);
-      // keep name/email/major for next time, clear the session-specific answers
-      setForm((f) => ({ ...f, toAccomplish: '', equipment: '', referenceTracks: '' }));
+      setSelected(null);
+      setForm({
+        start_time: '', duration: '', name: '', email: '',
+        group: '', toAccomplish: '', equipment: '', referenceTracks: '',
+      });
     } else {
-      setStatus(data.error);
-      loadSlots(day); // refresh so a just-taken slot greys out
+      setStatus(data.error || 'Something went wrong. Please try again.');
     }
   };
 
@@ -103,13 +108,13 @@ export default function Request() {
           <form className="booking__form" onSubmit={book}>
 
             <div className="field">
-                <label htmlFor="time">Start time</label>
-                <input id="time" type="time" required value={time} onChange={handleChanges} />
+                <label htmlFor="start_time">Start time</label>
+                <input id="start_time" name="start_time" type="time" required value={form.start_time} onChange={handleChanges} />
             </div>
 
             <div className="field">
-                <label htmlFor="Duration">Duration (hrs)</label>
-                <input id="Duration" type="text" required value={form.Duration} onChange={handleChanges} />
+                <label htmlFor="duration">Duration (hrs)</label>
+                <input id="duration" type="number" min="0" step="0.5" required value={form.duration} onChange={handleChanges} />
             </div>
 
             <div className="field-row">
@@ -148,9 +153,11 @@ export default function Request() {
               <textarea id="referenceTracks" name="referenceTracks" rows={2} placeholder="Your response" value={form.referenceTracks} onChange={handleChanges} />
             </div>
 
-                <button type="submit" className="booking__submit" disabled={!day || !time}>
-                    {day && time ? `Request ${format(day, 'MMM d')} at ${time}` : 'Pick a day and time'}
-                </button>
+              <button type="submit" className="booking__submit" disabled={!day || !form.start_time}>
+                {day && form.start_time
+                  ? `Request ${format(day, 'MMM d')} at ${form.start_time}`
+                  : 'Pick a day and time'}
+              </button>
             </form>
 
         <p className="booking__status">{status}</p>
