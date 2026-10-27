@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
+import Logo from '../assets/word_white.svg';
+
 
 function Navbar() {
   const [openLinks, setOpenLinks] = useState(true);
@@ -28,7 +30,7 @@ function Navbar() {
   return (
     <div className={`navbar ${!openLinks ? 'menu-closed' : ''} ${isHidden ? 'hidden-nav' : ''}`}>
       <div className='leftSide'> 
-        <Link to="/"> COLBY STUDIO </Link>
+        <div className="logoContainer"><Link to="/"><img src={Logo} alt="Logo" /></Link></div>
       </div>
       
      <div className='center' id={openLinks ? "open" : "close"}>
