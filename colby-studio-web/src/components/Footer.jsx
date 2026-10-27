@@ -27,7 +27,7 @@ function Footer() {
                 <p><Link to ='/privacy-policy'>Privacy Policy</Link> </p>
             </div>
             <div className='copyright'> 
-                <p>&copy; {new Date().getFullYear()} East Coast Dragons</p>
+                <p>&copy; {new Date().getFullYear()} Studio At Colby</p>
                 <a href="https://www.instagram.com/thestudioatcolby/?hl=en" target="_blank" rel="noopener noreferrer">
                     <FaInstagram size={24} />
                 </a>

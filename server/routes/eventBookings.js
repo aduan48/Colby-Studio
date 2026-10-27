@@ -8,7 +8,7 @@ const SECRETARY_EMAIL = 'ajduan29@colby.edu'; //process.env.SECRETARY_EMAIL// "z
 
 router.post('/', async (req, res) => {
   // TODO
-  const { request_date, start_time, duration, name, email, group, toAccomplish, equipment, referenceTracks } = req.body ?? {};
+  const { request_date, start_time, duration, name, email, group, toAccomplish, equipment, additional } = req.body ?? {};
   const date = typeof request_date === 'string' ? request_date.slice(0, 10) : null;
 
   const cleanName = clip(name, 100);
@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
   const cleanGroup = clip(group, 100);
   const cleanGoal = clip(toAccomplish, 2000);
   const cleanEquipment = clip(equipment, 1000);
-  const cleanRefs = clip(referenceTracks, 1000);
+  const cleanAdditional = clip(additional, 1000);
 
   if (new Date(request_date) < new Date()) return res.status(400).json({ error: 'That time has already passed' });
   if (!cleanName) return res.status(400).json({ error: 'Please enter your name' });
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
        <b>Group:</b> ${cleanGroup}<br>
        <b>Goal:</b> ${nl2br(cleanGoal)}<br>
        <b>Equipment:</b> ${nl2br(cleanEquipment) || 'None'}<br>
-       <b>Reference tracks:</b> ${nl2br(cleanRefs) || 'None'}</p>`;
+       <b>Additional Information:</b> ${nl2br(cleanAdditional) || 'None'}</p>`;
   
   try {
     await mailer.sendMail({

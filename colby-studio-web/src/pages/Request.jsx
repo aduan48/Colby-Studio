@@ -40,7 +40,7 @@ export default function Request() {
     group: '', 
     toAccomplish: '', 
     equipment: '', 
-    referenceTracks: '',
+    additional: '',
   });
 
   useEffect(() => {
@@ -80,7 +80,7 @@ export default function Request() {
       setSelected(null);
       setForm({
         start_time: '', duration: '', name: '', email: '',
-        group: '', toAccomplish: '', equipment: '', referenceTracks: '',
+        group: '', toAccomplish: '', equipment: '', additional: '',
       });
     } else {
       setStatus(data.error || 'Something went wrong. Please try again.');
@@ -148,9 +148,9 @@ export default function Request() {
             </div>
 
             <div className="field">
-              <label htmlFor="referenceTracks">Reference tracks</label>
-              <span className="hint">Optional. Links or song names that show the sound you're going for.</span>
-              <textarea id="referenceTracks" name="referenceTracks" rows={2} placeholder="Your response" value={form.referenceTracks} onChange={handleChanges} />
+              <label htmlFor="additional">Additional Information</label>
+              <span className="hint">Optional. Anything else you'd like us to know.</span>
+              <textarea id="additional" name="additional" rows={2} placeholder="Your response" value={form.additional} onChange={handleChanges} />
             </div>
 
               <button type="submit" className="booking__submit" disabled={!day || !form.start_time}>
@@ -160,7 +160,7 @@ export default function Request() {
               </button>
             </form>
 
-        <p className="booking__status">{status}</p>
+        {status && <p className="booking__status">{status}</p>}
       </div>
     </div>
   );

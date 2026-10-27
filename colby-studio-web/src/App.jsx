@@ -1,13 +1,13 @@
-import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'; 
-import { Navigate } from 'react-router-dom';
+import About from './pages/About'
 import Request from './pages/Request'
 import './App.css'
 import Home from './pages/Home'
 import BookingsPage from './pages/BookingsPage'
 import Booking from './pages/Booking'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 import { AnimatePresence } from 'framer-motion';
 import ScrollToTop from './ScrollToTop';
 
@@ -22,6 +22,8 @@ function AnimatedRoutes() {
         <Route path="/booking" element={<BookingsPage />} />
         <Route path="/studio-booking" element={<Booking />} />
         <Route path="/special-request" element={<Request />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </AnimatePresence>
   );
