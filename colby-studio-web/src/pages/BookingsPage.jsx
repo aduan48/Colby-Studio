@@ -1,4 +1,6 @@
 import React from 'react'
+import studioImage from '../assets/sliders.jpeg'
+import eventImage from '../assets/drums.jpeg'
 import { NavLink } from 'react-router-dom';
 import '../styles/BookingsPage.css'
 
@@ -7,6 +9,7 @@ function BookingsPage() {
     <div className='bookings-page'>
         <div className='booking-content'>
           <div className='booking-container studio-time'>
+            <img src={studioImage} alt="Studio" />
             <NavLink to="/studio-booking"> 
                   <button> BOOK A STUDIO TIME </button>
             </NavLink>
@@ -19,6 +22,7 @@ function BookingsPage() {
             </div>
           </div>
           <div className='booking-container event-booking'>
+            <img src={eventImage} alt="Event" />
             <NavLink to="/special-request"> 
                   <button> BOOK US FOR YOUR EVENT </button>
             </NavLink>
