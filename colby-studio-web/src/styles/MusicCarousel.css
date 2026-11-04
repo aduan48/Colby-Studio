@@ -178,6 +178,13 @@
     grid-template-columns: 36px 1fr 36px;
     gap: 8px;
   }
+
+  .mc-strip-inner {
+    display: flex;
+    width: max-content;
+    height: 100%;
+    animation: mc-marquee 40s linear infinite;
+  }
 }
 
 
@@ -191,7 +198,7 @@
   position: absolute;
   left: 50%;
   /* vinyl center = 8% top margin + half its width */
-  top: calc(var(--vinyl) * 0.57);
+  top: calc(var(--vinyl) * 0.53);
   transform: translate(-50%, -50%);
   z-index: 2;
 
