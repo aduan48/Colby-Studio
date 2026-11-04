@@ -7,6 +7,7 @@
   padding: 24px 0 0;  
   color: var(--ink);
   overflow: hidden;
+  padding-top: 0; /* no extra space above the vinyl */
 }
 
 
@@ -14,10 +15,10 @@
 
 /* ---------- Stage ---------- */
 .mc-stage {
-  --vinyl: clamp(300px, 52vw, 640px);
+  --vinyl: clamp(300px, 80vw, 800px);
   position: relative;
   /* tall enough to show the record's center plus room for the panel */
-  height: calc(var(--vinyl) * 0.58 + 130px);
+  height: calc(var(--vinyl) * 0.58 + 110px);
   overflow: hidden;
 }
 
@@ -33,8 +34,8 @@
 
 .mc-strip-inner {
   display: flex;
-  width: max-content;
-  height: 90%;
+  width: auto;
+  height: 95%;
   animation: mc-marquee 40s linear infinite;
 }
 
@@ -57,7 +58,7 @@
 /* Vinyl (front layer) */
 .mc-vinyl {
   position: absolute;
-  top: 0;
+  top: -5%;
   left: 50%;
   width: var(--vinyl);
   aspect-ratio: 1 / 1;
@@ -163,7 +164,7 @@
 /* ---------- Mobile ---------- */
 @media (max-width: 640px) {
   .mc-stage {
-    --vinyl: 105vw; /* wider than the screen; the sides get cropped */
+    --vinyl: 110vw; /* wider than the screen; the sides get cropped */
   }
 
   .mc-panel {
@@ -185,6 +186,8 @@
     height: 100%;
     animation: mc-marquee 40s linear infinite;
   }
+
+
 }
 
 
@@ -198,7 +201,7 @@
   position: absolute;
   left: 50%;
   /* vinyl center = 8% top margin + half its width */
-  top: calc(var(--vinyl) * 0.53);
+  top: calc(var(--vinyl) * 0.50);
   transform: translate(-50%, -50%);
   z-index: 2;
 

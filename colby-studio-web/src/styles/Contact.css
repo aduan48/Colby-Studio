@@ -1,0 +1,150 @@
+.contact-page{
+    background: var(--accent-dark);
+    padding: 70px 48px;
+    justify-content: center;
+    align-items: center;
+    display: flex;  
+    border-bottom: 1px solid var(--subtle-gray);
+}
+
+.contact {
+
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 48px;
+  max-width: 960px;
+  padding: 0 48px;
+  background: var(--accent-dark);
+  color: #fff;
+  border-radius: 20px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.contact * {
+  box-sizing: border-box;
+}
+
+/* ---------- Left: intro ---------- */
+.contact__title {
+  margin: 0 0 12px;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.contact__subtitle {
+  margin: 0 0 32px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.contact__details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.contact__details span {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* ---------- Right: form ---------- */
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact .field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.contact .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  font: inherit;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.contact textarea {
+  resize: vertical;
+}
+
+.contact input::placeholder,
+.contact textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.contact input:focus,
+.contact textarea:focus {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #fff;
+}
+
+.contact__submit {
+  padding: 14px;
+  background: #fff;
+  color: var(--accent);
+  border: none;
+  border-radius: 12px;
+  font: 600 1rem var(--sans);
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.contact__submit:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.contact__status {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 760px) {
+
+    .contact-page{
+        padding: 20px 20px;
+    }
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 0px;
+    padding: 28px 20px;
+  }
+
+  .contact .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__details{
+    display: none;
+  }
+}

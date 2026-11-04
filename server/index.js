@@ -3,6 +3,7 @@ import express from 'express';
 import availabilityRoutes from './routes/availability.js';
 import bookingRoutes from './routes/bookings.js';
 import eventBookingRoutes from './routes/eventBookings.js';
+import contactRoutes from './routes/contact.js';
 
 const app = express();
 app.use(express.json());
@@ -10,5 +11,6 @@ app.use(express.json());
 app.use('/api/availability', availabilityRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/eventbookings', eventBookingRoutes);
+app.use('/api/contact', contactRoutes);
 
 app.listen(3001, () => console.log('API on :3001'));
