@@ -1,0 +1,281 @@
+/* Section is full width now; the player below stays narrow */
+.mc {
+  --ink: #111;
+  --muted: #8a8a8a;
+  --line: #e6e6e6;
+
+  padding: 24px 0 0;  
+  color: var(--ink);
+  overflow: hidden;
+}
+
+
+
+
+/* ---------- Stage ---------- */
+.mc-stage {
+  --vinyl: clamp(300px, 52vw, 640px);
+  position: relative;
+  /* tall enough to show the record's center plus room for the panel */
+  height: calc(var(--vinyl) * 0.58 + 130px);
+  overflow: hidden;
+}
+
+
+/* Scrolling cover strip (back layer) */
+.mc-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 62%;
+}
+
+.mc-strip-inner {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: mc-marquee 40s linear infinite;
+}
+
+.mc-strip:hover .mc-strip-inner {
+  animation-play-state: paused;
+}
+
+.mc-strip-cover {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin-right: 16px; /* margin, not gap, so the -50% loop lines up exactly */
+  cursor: pointer;
+}
+
+@keyframes mc-marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* Vinyl (front layer) */
+.mc-vinyl {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--vinyl);
+  aspect-ratio: 1 / 1;
+  transform: translateX(-50%);
+  z-index: 1;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.35));
+}
+
+.mc-vinyl-disc {
+  position: relative;
+  margin-top: 8%;
+  width: 100%;
+  height: 100%;
+  animation: mc-spin 1.8s linear infinite; /* 1.8s ≈ 33⅓ rpm */
+  animation-play-state: paused;            /* stops in place, no snap back */
+}
+
+.mc-vinyl.is-spinning .mc-vinyl-disc {
+  animation-play-state: running;
+}
+
+.mc-vinyl-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Current track's cover as the record label */
+.mc-vinyl-label {
+  position: absolute;
+  inset: 30%;
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Spindle hole */
+.mc-vinyl-disc::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.5%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes mc-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Respect users who turn off animations */
+@media (prefers-reduced-motion: reduce) {
+  .mc-strip-inner,
+  .mc-vinyl-disc {
+    animation: none;
+  }
+}
+
+.mc-progress {
+  margin-top: 24px;
+}
+
+/* ---------- Player panel ---------- */
+.mc-panel {
+  /* light colors for use over the dark vinyl */
+  --ink: #fff;
+  --muted: rgba(255, 255, 255, 0.7);
+  --line: rgba(255, 255, 255, 0.25);
+
+  position: absolute;
+  left: 50%;
+  /* vinyl center = 8% top margin + half its width */
+  top: calc(var(--vinyl) * 0.57);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  width: min(420px, calc(100% - 32px));
+  box-sizing: border-box;
+  padding: 20px 24px 24px;
+  color: var(--ink);
+
+  /* frosted blue glass */
+  background: rgba(30, 64, 175, 0.28);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%); /* Safari */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.mc-progress {
+  height: 2px;
+  margin-top: 0;
+  background: var(--line);
+}
+
+.mc-progress-fill {
+  height: 100%;
+  background: var(--ink);
+  transition: width 0.2s linear;
+}
+
+/* prev | info | next */
+.mc-player {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.mc-info {
+  min-width: 0;
+  text-align: center;
+}
+
+.mc-title-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.mc-title {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.1;
+  color: white;
+}
+
+.mc-artist {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+.mc-sub {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.mc-count {
+  font-variant-numeric: tabular-nums;
+}
+
+.mc-link {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mc-link:hover {
+  color: var(--ink);
+}
+
+/* ---------- Buttons (reset site defaults) ---------- */
+.mc button {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.mc button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.mc .mc-nav {
+  width: 40px;
+  height: 40px;
+}
+
+.mc .mc-nav:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.mc .mc-mute {
+  width: 28px;
+  height: 28px;
+  color: var(--muted);
+}
+
+.mc .mc-mute:hover {
+  color: var(--ink);
+}
+
+.mc .mc-mute svg {
+  width: 16px;
+  height: 16px;
+}
+
+.mc .mc-play {
+  width: 44px;
+  height: 44px;
+  margin: 16px auto 0;
+  background: #fff;
+  color: #111;
+}
+
+.mc .mc-play:hover {
+  opacity: 0.85;
+}
