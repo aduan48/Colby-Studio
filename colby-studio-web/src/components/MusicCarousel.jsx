@@ -61,12 +61,14 @@ function MusicCarousel() {
           </div>
         </div>
 
-        <div className={`mc-vinyl ${isPlaying ? "is-spinning" : ""}`}>
+       <div className={`mc-vinyl ${isPlaying ? "is-spinning" : ""}`}>
+        <div className="mc-vinyl-swap" key={index}>
           <div className="mc-vinyl-disc">
             <img className="mc-vinyl-img" src={vinylImage} alt="" />
             <img className="mc-vinyl-label" src={track.image} alt="" />
           </div>
         </div>
+      </div>
 
         <div className="mc-panel">
           <div className="mc-progress">
@@ -80,7 +82,7 @@ function MusicCarousel() {
 
             <div className="mc-info">
               <div className="mc-title-row">
-                <h2 className="mc-title">{track.Title}</h2>
+                <h2  className="mc-title mc-swap-text" key={`title-${index}`}>{track.Title}</h2>
                 <button className="mc-mute" onClick={() => setIsMuted((m) => !m)}
                         aria-label={isMuted ? "Unmute" : "Mute"}>
                   {isMuted
@@ -89,7 +91,7 @@ function MusicCarousel() {
                 </button>
               </div>
 
-              <p className="mc-artist">{track.Artist}</p>
+              <p className="mc-artist mc-swap-text" key={`artist-${index}`}>{track.Artist}</p>
 
               <div className="mc-sub">
                 <span className="mc-count">

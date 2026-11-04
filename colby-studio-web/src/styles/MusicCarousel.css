@@ -115,7 +115,9 @@
 /* Respect users who turn off animations */
 @media (prefers-reduced-motion: reduce) {
   .mc-strip-inner,
-  .mc-vinyl-disc {
+  .mc-vinyl-disc,
+  .mc-vinyl-swap,
+  .mc-swap-text {
     animation: none;
   }
 }
@@ -123,6 +125,41 @@
 .mc-progress {
   margin-top: 24px;
 }
+
+/* ---------- Track change animations ---------- */
+
+.mc-vinyl-swap {
+  animation: mc-record-in 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes mc-record-in {
+  from {
+    opacity: 0;
+    transform: translateY(35%) rotate(-40deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Title + artist fade up out of a blur */
+.mc-swap-text {
+  animation: mc-text-in 0.45s ease both;
+}
+
+.mc-artist.mc-swap-text {
+  animation-delay: 0.08s; /* artist follows just after the title */
+}
+
+@keyframes mc-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(4px);
+  }
+}
+
 
 /* ---------- Player panel ---------- */
 .mc-panel {
@@ -179,17 +216,24 @@
 }
 
 .mc-title-row {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 6px;
 }
 
 .mc-title {
-  margin: 0;
+  grid-column: 2;   /* middle column */
+  min-width: 0;
+    margin: 0;
   font-size: 36px;
   line-height: 1.1;
   color: white;
+}
+
+.mc .mc-mute {
+  grid-column: 3;   /* right column, right next to the title */
+  justify-self: start;
 }
 
 .mc-artist {
