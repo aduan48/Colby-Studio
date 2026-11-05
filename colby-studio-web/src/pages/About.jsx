@@ -1,9 +1,183 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 import '../styles/About.css'
+
+const FACTS = [
+  { label: 'Where', value: 'Gordon Center, basement' },
+  { label: 'Sessions', value: '2–4 hours' },
+  { label: 'Run by', value: 'Student engineers' },
+  { label: 'Join Us for Mix Club', value: 'Mondays, 4:30' },
+]
+
+const STEPS = [
+  {
+    title: 'Scan the QR code',
+    body: 'Posters around campus link straight to the sign-up form.',
+  },
+  {
+    title: 'Pick a time slot',
+    body: 'Sessions usually run two to four hours with a student manager. Each one has their own schedule and specialty.',
+  },
+  {
+    title: 'Make something',
+    body: 'Your engineer runs the board and teaches you as much as you want to learn, from the basics to mastering.',
+  },
+]
+
+const SOFTWARE = [
+  { name: 'Pro Tools' },
+  { name: 'Ableton' },
+  { name: 'Logic' },
+  { name: 'FL Studio', soon: true },
+]
 
 function About() {
   return (
-    <div>About</div>
+    <main className="about-page">
+      {/* ---------- Hero ---------- */}
+      <header className="ap-hero">
+        <p className="ap-kicker">About The Studio</p>
+        <h1 className="ap-title">
+          WELCOME to <span>the studio at colby</span>
+        </h1>
+        <p className="ap-lede">
+          A student-run recording studio in the basement of the Gordon Center,
+          open to anyone at Colby. Maybe you’ve never touched a mixer, or maybe
+          you have albums under your belt and just need help with the master.
+          Either way, there’s a seat for you.
+        </p>
+
+        <dl className="ap-facts">
+          {FACTS.map((f) => (
+            <div key={f.label} className="ap-fact">
+              <dt>{f.label}</dt>
+              <dd>{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </header>
+
+      {/* ---------- 01 The space ---------- */}
+      <section className="ap-section">
+        <div className="ap-label">
+          <span className="ap-num">01</span>
+          <h2>The space</h2>
+        </div>
+        <div className="ap-body">
+          <p className="ap-dropcap">
+            The Gordon Center opened in late 2023, and the studio was finished
+            in early 2024. Even then, students couldn’t use it, because no one
+            had been trained to run it. That’s changed.
+          </p>
+          <p>
+            The studio is now open to every Colby student, with a member of the
+            Mixing Club there to supervise. There’s plenty of room in the
+            recording space to bring in just about any instrument, and the
+            managers will help you get it recorded.
+          </p>
+        </div>
+      </section>
+
+      {/* ---------- 02 How it works ---------- */}
+      <section className="ap-section">
+        <div className="ap-label">
+          <span className="ap-num">02</span>
+          <h2>How it works</h2>
+        </div>
+        <div className="ap-body">
+          <ol className="ap-steps">
+            {STEPS.map((s, i) => (
+              <li key={s.title} className="ap-step">
+                <span className="ap-step__num">{i + 1}</span>
+                <div>
+                  <h3>{s.title}</h3>
+                  <p>{s.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ---------- 03 The engineers ---------- */}
+      <section className="ap-section">
+        <div className="ap-label">
+          <span className="ap-num">03</span>
+          <h2>The engineers</h2>
+        </div>
+        <div className="ap-body">
+          <p>
+            Every session is run by a student engineer. Each one has taken a
+            JanPlan course, been tested on every part of the studio, and is paid
+            to run sessions for the Colby community.
+          </p>
+          <p>
+            One might lean toward rap and hip hop beats, another toward folk and
+            the blues. All of them can teach you the fundamentals of music
+            production and performance.
+          </p>
+
+          <ul className="ap-tags" aria-label="Software the engineers know">
+            {SOFTWARE.map((s) => (
+              <li key={s.name} className={s.soon ? 'ap-tag ap-tag--soon' : 'ap-tag'}>
+                {s.name}
+                {s.soon && <small>coming</small>}
+              </li>
+            ))}
+          </ul>
+          <p className="ap-note">
+            Use something else? The managers can request it through the music
+            department. It’s usually approved within about a week.
+          </p>
+        </div>
+      </section>
+
+      {/* ---------- Pull quote ---------- */}
+      <figure className="ap-quote">
+        <blockquote>
+          It’s really a hub for student artists to both work together and also
+          learn from each other. And I think that’s very special to have that
+          with institutional support.
+        </blockquote>
+        <figcaption>Rafi Aronson ’27, engineer</figcaption>
+      </figure>
+
+      {/* ---------- 04 Mix Club ---------- */}
+      <section className="ap-section">
+        <div className="ap-label">
+          <span className="ap-num">04</span>
+          <h2>Mix Club</h2>
+        </div>
+        <div className="ap-body">
+          <div className="ap-when">
+            <span className="ap-when__day">Mondays</span>
+            <span className="ap-when__time">4:30 p.m.</span>
+            <span className="ap-when__place">Film screening room, next to the studio</span>
+          </div>
+          <p>
+            Mix Club happens alongside studio time. Alex Fulton, an instructor
+            of audio engineering and music production, picks a track the room
+            likes and the group takes it apart together. One week might be about
+            reverb, the next about chord changes.
+          </p>
+          <p className="ap-aside">
+            “What are the secrets here, and what can we learn from that in our
+            own mixes?”
+          </p>
+        </div>
+      </section>
+
+      {/* ---------- CTA ---------- */}
+      <section className="ap-cta">
+        <h2>No judgment. Just try&nbsp;it.</h2>
+        <p>
+          The Studio is a place for growth and discovery. Book a session and see
+          what you make.
+        </p>
+        <NavLink className="ap-cta__btn" to="/booking">Book a session</NavLink>
+      </section>
+
+    </main>
   )
 }
 

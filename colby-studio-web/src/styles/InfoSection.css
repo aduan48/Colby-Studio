@@ -5,6 +5,11 @@
   padding-bottom: 0;
 }
 
+.about a {
+  text-decoration: none;
+  color: inherit; /* stops the link color (var(--accent)) from turning the text blue */
+}
+
 /* the orange box */
 .about__card {
   max-width: 1000px;
@@ -17,6 +22,7 @@
   margin-bottom: 40px;
   box-shadow: 15px 15px 0 var(--accent);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
 }
 
 .about__card:hover {
@@ -28,6 +34,7 @@
   margin: 0 0 10px;
   line-height: 1.15;
   color: #fff;
+  text-decoration: none;
 }
 
 /* accent line under the header */
@@ -46,10 +53,12 @@
   font-size: 17px;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
 }
 
 .about__card p:last-of-type {
   margin-bottom: 0;
+  text-decoration: none;
 }
 
 .about__cta {

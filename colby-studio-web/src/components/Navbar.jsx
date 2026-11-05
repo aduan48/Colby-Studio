@@ -2,18 +2,15 @@ import React, { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import Logo from '../assets/word_white.svg';
+import { FaInstagram } from 'react-icons/fa'
 
 
 function Navbar() {
-  const [openLinks, setOpenLinks] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
   const isHidden = location.pathname === '/projects/ephemeral';
   const isHome = location.pathname === '/';
 
-  const toggleNavbar = () => {
-    setOpenLinks(!openLinks);
-  };
 
   // --- SCROLL TO CONTACT LOGIC ---
   const handleContactClick = (e) => {
@@ -28,20 +25,20 @@ function Navbar() {
   };
 
   return (
-    <div className={`navbar ${!openLinks ? 'menu-closed' : ''} ${isHidden ? 'hidden-nav' : ''}`}>
+    <div className={`navbar ${isHidden ? 'hidden-nav' : ''}`}>
       <div className='leftSide'> 
         <div className="logoContainer"><Link to="/"><img src={Logo} alt="Logo" /></Link></div>
       </div>
       
-     <div className='center' id={openLinks ? "open" : "close"}>
+     <div className='center' >
         <NavLink to="/" className={() => (isHome ? 'active' : '')}> HOME </NavLink>
         <NavLink to="/about"> ABOUT </NavLink>
         <NavLink to="/booking"> BOOK US </NavLink>
      </div>
             
       <div className='rightSide'> 
-        <button onClick={toggleNavbar} className="toggle-btn">
-          {openLinks ? 'HIDE' : 'EXPAND'}
+        <button className="toggle-btn">
+          <FaInstagram size={30} />
         </button>
       </div>
     </div>

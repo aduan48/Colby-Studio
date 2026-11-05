@@ -333,3 +333,52 @@
     --rdp-day_button-width: 34px;
   }
 }
+
+/* ---------- Vinyl background ---------- */
+.booking-page {
+  position: relative;
+  overflow: hidden;
+}
+
+.booking-page::before,
+.booking-page::after {
+  content: "";
+  position: absolute;
+  width: 460px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle,
+    transparent 0 10px,
+    rgba(46, 39, 133, 0.15) 10px 11px
+  );
+  pointer-events: none;
+  animation: booking-spin 80s linear infinite;
+}
+
+.booking-page::before { left: -220px; top: -60px; }
+.booking-page::after  { right: -240px; bottom: -140px; animation-direction: reverse; }
+
+/* keep the card above the rings */
+.booking {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+@media (max-width: 520px) {
+  .booking-page::before,
+  .booking-page::after {
+    width: 300px;
+  }
+  .booking-page::before { left: -170px; top: -40px; }
+  .booking-page::after  { right: -180px; bottom: -100px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-page::before,
+  .booking-page::after {
+    animation: none;
+  }
+}
