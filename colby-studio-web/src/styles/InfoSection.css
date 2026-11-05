@@ -75,7 +75,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr)); /* two exactly equal columns */
   gap: 20px;
   width: min(640px, 100%);   /* max 640px wide, never wider than the screen */
-  margin: 0 auto 20px;
+  margin: 0 auto 150px;
 }
 
 

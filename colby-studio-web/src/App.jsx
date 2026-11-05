@@ -10,20 +10,21 @@ import Booking from './pages/Booking'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import { AnimatePresence } from 'framer-motion';
 import ScrollToTop from './ScrollToTop';
+import PageTransition from './components/PageTransition';
 
 
 function AnimatedRoutes() {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/booking" element={<BookingsPage />} />
-        <Route path="/studio-booking" element={<Booking />} />
-        <Route path="/special-request" element={<Request />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/booking" element={<PageTransition><BookingsPage /></PageTransition>} />
+        <Route path="/studio-booking" element={<PageTransition><Booking /></PageTransition>} />
+        <Route path="/special-request" element={<PageTransition><Request /></PageTransition>} />
+        <Route path="/privacy-policy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
+        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );

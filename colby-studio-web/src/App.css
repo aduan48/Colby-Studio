@@ -2,3 +2,11 @@
     margin-top: 10vh;
     width: 100%;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+#our-work {
+  scroll-margin-top: 80px; /* height of your navbar, so the title isn't hidden under it */
+}

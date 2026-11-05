@@ -1,0 +1,319 @@
+/* =========================================================
+   Hero 2 — editorial split layout
+   ========================================================= */
+
+.hero2 {
+  --white-80: rgba(255, 255, 255, 0.8);
+  --white-60: rgba(255, 255, 255, 0.6);
+  --white-20: rgba(255, 255, 255, 0.2);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 92vh;
+  overflow: hidden;
+  color: #fff;
+  isolation: isolate;
+}
+
+/* ---------- Background layers ---------- */
+.hero2-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+}
+
+.hero2-bg .gradient-canvas,
+.hero2-bg canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* darkens the left side so the headline reads cleanly */
+.hero2-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg,
+      rgba(22, 24, 90, 0.82) 0%,
+      rgba(22, 24, 90, 0.55) 45%,
+      rgba(22, 24, 90, 0.15) 100%),
+    linear-gradient(0deg, rgba(22, 24, 90, 0.6) 0%, transparent 35%);
+}
+
+/* fine film grain for a printed, premium texture */
+.hero2-grain {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Layout ---------- */
+.hero2-inner {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: clamp(32px, 5vw, 80px);
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: clamp(48px, 8vh, 96px) clamp(20px, 5vw, 64px) 32px;
+  box-sizing: border-box;
+}
+
+/* ---------- Copy ---------- */
+.hero2-copy {
+  text-align: left;
+}
+
+
+
+.hero2-title {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.hero2-accent {
+  color: var(--secondary-light);
+}
+
+.hero2-lede {
+  max-width: 440px;
+  margin: 28px 0 0;
+  font: 400 clamp(1rem, 1.4vw, 1.125rem) / 1.6 var(--sans);
+  color: var(--white-80);
+}
+
+/* ---------- Actions ---------- */
+.hero2-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.hero2-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 28px;
+  font: 600 0.9rem var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent);
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(10, 12, 50, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+
+.hero2-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(10, 12, 50, 0.45);
+}
+
+
+.hero2-link {
+  position: relative;
+  padding: 6px 0;
+  font: 600 0.9rem var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* underline that draws in on hover */
+.hero2-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0.35);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero2-link:hover::after {
+  transform: scaleX(1);
+}
+
+.hero2-btn:focus-visible,
+.hero2-link:focus-visible,
+.hero2-scroll:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* ---------- Logo record ---------- */
+.hero2-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  width: min(420px, 100%);
+  aspect-ratio: 1 / 1;
+}
+
+/* thin ring with a dot circling it */
+.hero2-orbit {
+  position: absolute;
+  inset: -8%;  
+  border: 1px solid var(--white-20);
+  border-radius: 50%;
+  animation: hero2-spin 18s linear infinite;
+}
+
+.hero2-orbit-dot {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: var(--secondary-light);
+  box-shadow: 0 0 16px rgba(244, 123, 95, 0.9);
+}
+
+/* white record with faint grooves */
+.hero2-disc {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(circle, transparent 0 6px, rgba(46, 49, 146, 0.05) 6px 7px),
+    radial-gradient(circle at 35% 30%, #ffffff 0%, #f3f1f7 70%, #e6e3ef 100%);
+  box-shadow:
+    0 30px 60px rgba(10, 12, 50, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.hero2-logo {
+  width: 82%;
+  height: auto;
+  display: block;
+  animation: hero2-spin 40s linear infinite;
+}
+
+.hero2-tag {
+  position: absolute;
+  right: 4%;
+  bottom: 8%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font: 600 0.7rem var(--sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(22, 24, 90, 0.55);
+  border: 1px solid var(--white-20);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* ---------- Entrance animation ---------- */
+.hero2-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: hero2-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes hero2-in {
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hero2-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hero2-ping {
+  0%   { box-shadow: 0 0 0 0 rgba(244, 123, 95, 0.6); }
+  80%  { box-shadow: 0 0 0 10px rgba(244, 123, 95, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 123, 95, 0); }
+}
+
+@keyframes hero2-drip {
+  to { top: 100%; }
+}
+
+
+/* ---------- Phone: just the record + buttons ---------- */
+@media (max-width: 900px) {
+
+    .hero2-visual {
+    order: -1;                 /* record on top */
+    width: min(300px, 70vw);
+  }
+  /* hide everything else */
+  .hero2-eyebrow,
+  .hero2-title,
+  .hero2-lede,
+  .hero2-tag,
+  .hero2-meta {
+    display: none;
+  }
+
+  /* center the record and buttons in the middle of the screen */
+  .hero2-inner {
+    align-content: center;
+    justify-items: center;
+    gap: 40px;
+    padding: 32px 20px 48px;
+    grid-template-columns: 1fr;
+  }
+
+  .hero2-visual {
+    order: -1;                 /* record on top */
+    width: min(300px, 70vw);
+  }
+
+  .hero2-copy {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* buttons stacked and centered */
+  .hero2-actions {
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 0;
+  }
+
+  .hero2-btn {
+    justify-content: center;
+    width: min(280px, 100%);
+  }
+
+  /* even, dark wash now that there's no text to protect */
+  .hero2-shade {
+    background: rgba(22, 24, 90, 0.35);
+  }
+}

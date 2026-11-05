@@ -42,7 +42,7 @@ function MusicCarousel() {
   };
 
   return (
-    <section className="mc">
+    <section className="mc" id="our-work">
 
       {/* Stage: scrolling covers behind, spinning vinyl, glass panel on top */}
       <div className="mc-stage">
