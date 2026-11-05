@@ -33,6 +33,7 @@
 }
 
 .bookings-page button{   
+  width: 100%;
   margin-top: 4px;
   padding: 14px;
   background: var(--accent);

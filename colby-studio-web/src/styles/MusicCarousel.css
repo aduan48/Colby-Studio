@@ -36,7 +36,7 @@
   display: flex;
   width: auto;
   height: 95%;
-  animation: mc-marquee 40s linear infinite;
+  animation: mc-marquee 30s linear infinite;
 }
 
 .mc-strip:hover .mc-strip-inner {

@@ -28,12 +28,12 @@ function InfoSection() {
       </section>
 
       <div className="info-section-buttons">
-          <NavLink to = '/studio-booking'>
-                <button>BOOK A STUDIO TIME</button>
-          </NavLink>
-           <NavLink to = '/special-request'>
-                <button>BOOK US FOR YOUR EVENT</button>
-          </NavLink>
+        <NavLink to="/studio-booking" className="info-btn">
+          Book a Studio Time
+        </NavLink>
+        <NavLink to="/special-request" className="info-btn">
+          Book Us for Your Event
+        </NavLink>
       </div>
       
     </div>
