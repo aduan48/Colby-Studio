@@ -23,9 +23,7 @@ export default function Hero2() {
 
 
           <h1 className="hero2-title hero2-reveal" style={{ '--d': '0.15s' }}>
-            Record Your
-            <br />
-             <span className="hero2-accent">Audio Vision</span>
+            Record Your <span className="hero2-accent">Audio Vision</span>
           </h1>
 
 
@@ -40,9 +38,6 @@ export default function Hero2() {
         </div>
 
         <div className="hero2-visual hero2-reveal" style={{ '--d': '0.25s' }}>
-          <div className="hero2-orbit" aria-hidden="true">
-            <span className="hero2-orbit-dot" />
-          </div>
           <div className="hero2-disc">
             <img src={Logo} alt="Studio at Colby" className="hero2-logo" />
           </div>

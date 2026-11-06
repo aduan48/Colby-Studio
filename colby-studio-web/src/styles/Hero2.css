@@ -1,10 +1,11 @@
 /* =========================================================
-   Hero 2 — editorial split layout
+   Hero 2
+   Desktop: typography only, anchored bottom-left
+   Tablet/phone: spinning record + buttons
    ========================================================= */
 
 .hero2 {
   --white-80: rgba(255, 255, 255, 0.8);
-  --white-60: rgba(255, 255, 255, 0.6);
   --white-20: rgba(255, 255, 255, 0.2);
 
   position: relative;
@@ -32,67 +33,39 @@
   height: 100% !important;
 }
 
-/* darkens the left side so the headline reads cleanly */
-.hero2-shade {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    linear-gradient(90deg,
-      rgba(22, 24, 90, 0.82) 0%,
-      rgba(22, 24, 90, 0.55) 45%,
-      rgba(22, 24, 90, 0.15) 100%),
-    linear-gradient(0deg, rgba(22, 24, 90, 0.6) 0%, transparent 35%);
-}
 
-/* fine film grain for a printed, premium texture */
-.hero2-grain {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.12;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
 
-/* ---------- Layout ---------- */
+
+
+/* ---------- Layout (desktop) ---------- */
 .hero2-inner {
   flex: 1;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  align-items: center;
-  gap: clamp(32px, 5vw, 80px);
-  width: min(1200px, 100%);
-  margin: 0 auto;
-  padding: clamp(48px, 8vh, 96px) clamp(20px, 5vw, 64px) 32px;
+  align-content: end;          /* push content to the bottom */
+  justify-items: start;        /* and to the left */
+  width: 100%;
+  padding: 0 clamp(24px, 6vw, 96px) clamp(48px, 9vh, 104px);
   box-sizing: border-box;
 }
 
 /* ---------- Copy ---------- */
 .hero2-copy {
+  max-width: 1100px;
   text-align: left;
 }
 
-
-
 .hero2-title {
   margin: 0;
-  font-size: clamp(3rem, 8vw, 6.5rem);
-  line-height: 0.95;
-  letter-spacing: -0.01em;
+  font-size: clamp(4rem, 9.5vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
   color: #fff;
 }
 
 .hero2-accent {
-  color: var(--secondary-light);
-}
-
-.hero2-lede {
-  max-width: 440px;
-  margin: 28px 0 0;
-  font: 400 clamp(1rem, 1.4vw, 1.125rem) / 1.6 var(--sans);
-  color: var(--white-80);
+  color: var(--accent);
+  -webkit-text-stroke: 2px #fff;
+  paint-order: stroke fill; /* draws the outline behind the fill so letters don't get thinner */
 }
 
 /* ---------- Actions ---------- */
@@ -100,8 +73,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 28px;
-  margin-top: 40px;
+  gap: 32px;
+  margin-top: clamp(32px, 4vh, 48px);
 }
 
 .hero2-btn {
@@ -117,15 +90,13 @@
   background: #fff;
   border-radius: 999px;
   box-shadow: 0 10px 30px rgba(10, 12, 50, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
 
 .hero2-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 36px rgba(10, 12, 50, 0.45);
 }
-
 
 .hero2-link {
   position: relative;
@@ -156,46 +127,17 @@
 }
 
 .hero2-btn:focus-visible,
-.hero2-link:focus-visible,
-.hero2-scroll:focus-visible {
+.hero2-link:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 4px;
 }
 
-/* ---------- Logo record ---------- */
+/* ---------- Record (hidden on desktop) ---------- */
 .hero2-visual {
-  position: relative;
-  display: grid;
-  place-items: center;
-  justify-self: center;
-  width: min(420px, 100%);
-  aspect-ratio: 1 / 1;
+  display: none;
 }
 
-/* thin ring with a dot circling it */
-.hero2-orbit {
-  position: absolute;
-  inset: -8%;  
-  border: 1px solid var(--white-20);
-  border-radius: 50%;
-  animation: hero2-spin 18s linear infinite;
-}
-
-.hero2-orbit-dot {
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  margin-left: -5px;
-  border-radius: 50%;
-  background: var(--secondary-light);
-  box-shadow: 0 0 16px rgba(244, 123, 95, 0.9);
-}
-
-/* white record with faint grooves */
 .hero2-disc {
-  position: relative;
   display: grid;
   place-items: center;
   width: 100%;
@@ -210,31 +152,11 @@
 }
 
 .hero2-logo {
+  display: block;
   width: 82%;
   height: auto;
-  display: block;
   animation: hero2-spin 40s linear infinite;
 }
-
-.hero2-tag {
-  position: absolute;
-  right: 4%;
-  bottom: 8%;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  font: 600 0.7rem var(--sans);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #fff;
-  background: rgba(22, 24, 90, 0.55);
-  border: 1px solid var(--white-20);
-  border-radius: 999px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
 
 /* ---------- Entrance animation ---------- */
 .hero2-reveal {
@@ -244,7 +166,6 @@
   animation-delay: var(--d, 0s);
 }
 
-/* ---------- Keyframes ---------- */
 @keyframes hero2-in {
   to { opacity: 1; transform: none; }
 }
@@ -253,45 +174,23 @@
   to { transform: rotate(360deg); }
 }
 
-@keyframes hero2-ping {
-  0%   { box-shadow: 0 0 0 0 rgba(244, 123, 95, 0.6); }
-  80%  { box-shadow: 0 0 0 10px rgba(244, 123, 95, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(244, 123, 95, 0); }
-}
-
-@keyframes hero2-drip {
-  to { top: 100%; }
-}
-
-
-/* ---------- Phone: just the record + buttons ---------- */
+/* ---------- Tablet & phone: record + buttons ---------- */
 @media (max-width: 900px) {
-
-    .hero2-visual {
-    order: -1;                 /* record on top */
-    width: min(300px, 70vw);
-  }
-  /* hide everything else */
-  .hero2-eyebrow,
-  .hero2-title,
-  .hero2-lede,
-  .hero2-tag,
-  .hero2-meta {
-    display: none;
-  }
-
-  /* center the record and buttons in the middle of the screen */
   .hero2-inner {
     align-content: center;
     justify-items: center;
     gap: 40px;
     padding: 32px 20px 48px;
-    grid-template-columns: 1fr;
   }
 
   .hero2-visual {
-    order: -1;                 /* record on top */
-    width: min(300px, 70vw);
+    display: block;
+    order: -1;                       /* record above the buttons */
+    width: min(320px, 70vw);
+  }
+
+  .hero2-title {
+    display: none;
   }
 
   .hero2-copy {
@@ -299,7 +198,6 @@
     text-align: center;
   }
 
-  /* buttons stacked and centered */
   .hero2-actions {
     flex-direction: column;
     justify-content: center;
@@ -312,8 +210,19 @@
     width: min(280px, 100%);
   }
 
-  /* even, dark wash now that there's no text to protect */
+  /* even wash, since there's no headline to protect */
   .hero2-shade {
     background: rgba(22, 24, 90, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero2-logo {
+    animation: none;
+  }
+  .hero2-reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }
