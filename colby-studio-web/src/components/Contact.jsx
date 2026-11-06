@@ -26,7 +26,7 @@ function Contact() {
     const [form, setForm] = useLocalStorage('contact:form', {
     name: '',
     email: '',
-    message: 'undecided',
+    message: ' ',
     });
 
     const handleChanges = (e) => {

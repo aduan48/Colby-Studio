@@ -28,10 +28,6 @@ export default function Hero2() {
              <span className="hero2-accent">Audio Vision</span>
           </h1>
 
-          <p className="hero2-lede hero2-reveal" style={{ '--d': '0.3s' }}>
-            From first demos to full ensembles and live events, our student
-            engineers help you capture your sound.
-          </p>
 
           <div className="hero2-actions hero2-reveal" style={{ '--d': '0.45s' }}>
             <NavLink to="/booking" className="hero2-btn">
