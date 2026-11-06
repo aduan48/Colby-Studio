@@ -2,12 +2,97 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Studio at Colby</title>
+
+    <title>The Studio at Colby | Student Recording Studio at Colby College</title>
+    <meta
+      name="description"
+      content="Book a session at The Studio at Colby, the student-run recording studio in the Gordon Center. Record, mix, and master with trained student engineers."
+    />
+    <link rel="canonical" href="https://thestudioatcolby.org/" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#2E3192" />
+
+    <!-- Open Graph (iMessage, Facebook, LinkedIn, Slack) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="The Studio at Colby" />
+    <meta property="og:title" content="The Studio at Colby" />
+    <meta property="og:description" content="The official site to book a session or learn more about The Studio at Colby, Colby College's student-run recording studio." />
+    <meta property="og:url" content="https://thestudioatcolby.org/" />
+    <meta property="og:image" content="https://thestudioatcolby.org/studio-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Studio at Colby logo" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Studio at Colby" />
+    <meta name="twitter:description" content="Book a session at Colby College's student-run recording studio." />
+    <meta name="twitter:image" content="https://thestudioatcolby.org/studio-og.png" />
+
+    <!-- Structured data: tells Google who you are and your main pages -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://thestudioatcolby.org/#org",
+            "name": "The Studio at Colby",
+            "url": "https://thestudioatcolby.org/",
+            "logo": "https://thestudioatcolby.org/favicon.svg",
+            "description": "A student-run recording studio in the Gordon Center for Creative and Performing Arts at Colby College.",
+            "parentOrganization": { "@type": "CollegeOrUniversity", "name": "Colby College" },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Gordon Center for Creative and Performing Arts, Colby College",
+              "addressLocality": "Waterville",
+              "addressRegion": "ME",
+              "postalCode": "04901",
+              "addressCountry": "US"
+            },
+            "sameAs": ["https://www.instagram.com/thestudioatcolby/"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://thestudioatcolby.org/#website",
+            "name": "The Studio at Colby",
+            "url": "https://thestudioatcolby.org/",
+            "publisher": { "@id": "https://thestudioatcolby.org/#org" }
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "name": ["Book a Session", "Booking Options", "Special Request", "About"],
+            "url": [
+              "https://thestudioatcolby.org/studio-booking",
+              "https://thestudioatcolby.org/booking",
+              "https://thestudioatcolby.org/special-request",
+              "https://thestudioatcolby.org/about"
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Plain links for crawlers and anyone with JavaScript off -->
+    <noscript>
+      <h1>The Studio at Colby</h1>
+      <p>Colby College's student-run recording studio.</p>
+      <nav>
+        <a href="/studio-booking">Book a session</a> ·
+        <a href="/booking">Booking options</a> ·
+        <a href="/special-request">Special request</a> ·
+        <a href="/about">About</a> ·
+        <a href="/privacy-policy">Privacy policy</a>
+      </nav>
+    </noscript>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
