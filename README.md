@@ -14,8 +14,7 @@ Students pick a day, choose an open time slot with a student engineer, and get a
 ![AWS Lightsail](https://img.shields.io/badge/AWS_Lightsail-232F3E?style=for-the-badge&logo=amazonwebservices&logoColor=white)
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 
-<!-- TODO: add the live link once the domain is set up -->
-[Live site](#) · [Architecture](#architecture) · [Run locally](#running-locally) · [Deploy](#deploying-updates) · [Maintenance](#maintenance-guide)
+[Live site](https://thestudioatcolby.org/) · [Architecture](#architecture) · [Run locally](#running-locally) · [Deploy](#deploying-updates) · [Maintenance](#maintenance-guide)
 
 </div>
 
@@ -285,6 +284,6 @@ free -h                            # memory ("available" is what matters)
 
 <div align="center">
 
-Designed and built by **[Alexander Duan](https://alexduanportfolio.com)** for The Studio at Colby.
+Designed and built by **Alexander Duan** for The Studio at Colby.
 
 </div>
