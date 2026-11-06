@@ -50,7 +50,6 @@
 
 /* ---------- Copy ---------- */
 .hero2-copy {
-  max-width: 1100px;
   text-align: left;
 }
 
@@ -64,7 +63,7 @@
 
 .hero2-accent {
   color: var(--accent);
-  -webkit-text-stroke: 2px #fff;
+  -webkit-text-stroke: 4px #fff;
   paint-order: stroke fill; /* draws the outline behind the fill so letters don't get thinner */
 }
 
