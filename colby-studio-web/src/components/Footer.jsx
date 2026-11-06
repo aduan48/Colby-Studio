@@ -1,39 +1,91 @@
 import React from 'react'
-import '../styles/Footer.css'
+import { Link } from 'react-router-dom'
 import { FaInstagram } from 'react-icons/fa'
-import {Link} from 'react-router-dom';
+import Logo from '../assets/combined_white.svg'
+import '../styles/Footer.css'
 
+const INSTAGRAM = 'https://www.instagram.com/thestudioatcolby/'
+
+const COLUMNS = [
+  {
+    title: 'Explore',
+    links: [
+      { to: '/', label: 'Home' },
+      { to: '/about', label: 'About' },
+      { to: '/booking', label: 'Bookings' },
+    ],
+  },
+  {
+    title: 'Book',
+    links: [
+      { to: '/studio-booking', label: 'Studio time' },
+      { to: '/special-request', label: 'Special request' },
+    ],
+  },
+]
 
 /**
- * 
- * @returns My footer which includes the copyright and a social medio icon leading to our instagram
+ * Site footer: logo + blurb, links to every page, studio info,
+ * and a bottom bar with copyright, privacy policy, and Instagram.
  */
 function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <div className='footer'>
-    
-        <div className='top-footer'>
-            <div className='short-blurb'>
-
-            </div>
-
-            <div className='sub-pages'>
-                
-            </div>
+    <footer className="footer">
+      <div className="footer__top">
+        {/* brand */}
+        <div className="footer__brand">
+          <Link to="/" aria-label="The Studio at Colby, home">
+            <img src={Logo} alt="The Studio at Colby" className="footer__logo" />
+          </Link>
         </div>
 
-        <div className='bottom-footer'>
-            <div className='links'>    
-                <p><Link to ='/privacy-policy'>Privacy Policy</Link> </p>
-            </div>
-            <div className='copyright'> 
-                <p>&copy; {new Date().getFullYear()} Studio At Colby</p>
-                <a href="https://www.instagram.com/thestudioatcolby/?hl=en" target="_blank" rel="noopener noreferrer">
-                    <FaInstagram size={24} />
-                </a>
-            </div>
+        {/* page links */}
+        {COLUMNS.map((col) => (
+          <nav key={col.title} className="footer__col" aria-label={col.title}>
+            <h2 className="footer__heading">{col.title}</h2>
+            <ul>
+              {col.links.map((l) => (
+                <li key={l.to}>
+                  <Link to={l.to}>{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
+
+        {/* visit */}
+        <div className="footer__col">
+          <h2 className="footer__heading">Visit</h2>
+          <address className="footer__address">
+            Gordon Center, basement
+            <br />
+            Colby College
+            <br />
+            Waterville, ME
+          </address>
+          <p className="footer__note">Mix Club meets Mondays at 4:30&nbsp;p.m.</p>
         </div>
-    </div>
+      </div>
+
+      <div className="footer__bottom">
+        <p className="footer__copy">&copy; {year} The Studio at Colby</p>
+
+        <div className="footer__meta">
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <a
+            href={INSTAGRAM}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer__social"
+            aria-label="The Studio at Colby on Instagram"
+          >
+            <FaInstagram size={20} />
+          </a>
+        </div>
+      </div>
+    </footer>
   )
 }
 

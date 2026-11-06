@@ -1,7 +1,50 @@
 .bookings-page{
-    margin-top: 6%;
-    padding: 0 10%;
+    padding: 0 15%;
     min-height: 100vh;
+}
+
+.bookings-hero {
+  position: relative;
+  padding: clamp(56px, 10vw, 60px) 0 56px;
+  padding-top: 5%;
+  padding-bottom: 0;
+  overflow-x: clip;
+  text-align: left;
+}
+
+.bookings-info{
+  margin-bottom: 90px;
+}
+
+
+.bookings-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.bookings-kicker::before {
+  content: "";
+  width: 32px;
+  height: 2px;
+  background: var(--secondary-accent);
+}
+
+.bookings-page .bookings-title {
+  margin: 0 0 28px;
+  font-size: clamp(5rem, 8vw, 5.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+.bookings-title span {
+  color: var(--secondary-accent);
 }
 
 .booking-container {
@@ -44,6 +87,7 @@
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
   transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    margin-bottom: 10px;
 }
 
 .booking-container button {

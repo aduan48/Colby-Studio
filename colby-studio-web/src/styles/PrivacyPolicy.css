@@ -1,0 +1,345 @@
+/* ---------- Privacy policy ---------- */
+.pp {
+  --muted: #6b6b76;
+  --line: #e2e2e2;
+
+  width: min(1080px, 100%);
+  margin: 0 auto;
+  padding: 0 24px 96px;
+  box-sizing: border-box;
+  text-align: left; /* #root centers text */
+  color: var(--text);
+  margin-top:-5%;
+}
+
+.pp *,
+.pp *::before,
+.pp *::after {
+  box-sizing: border-box;
+}
+
+.pp a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+/* ---------- Hero ---------- */
+.pp-hero {
+  padding: clamp(56px, 10vw, 104px) 0 48px;
+  border-bottom: 2px solid var(--text);
+}
+
+.pp-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pp-kicker::before {
+  content: "";
+  width: 32px;
+  height: 2px;
+  background: var(--secondary-accent);
+}
+
+.pp .pp-title {
+  margin: 0 0 16px;
+  font-size: clamp(2.75rem, 8vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+.pp-title span {
+  color: var(--secondary-accent);
+}
+
+.pp-updated {
+  color: var(--muted);
+  font: 500 0.8rem var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* "short version" card, same offset shadow as the rest of the site */
+.pp-summary {
+  max-width: 720px;
+  margin-top: 40px;
+  padding: clamp(24px, 5vw, 36px);
+  background: var(--accent);
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 10px 10px 0 var(--secondary-light);
+}
+
+.pp .pp-summary h2 {
+  margin: 0 0 16px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.pp-summary ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pp-summary li {
+  position: relative;
+  padding-left: 22px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.pp-summary li + li {
+  margin-top: 8px;
+}
+
+.pp-summary li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--secondary-light);
+}
+
+/* ---------- Two-column layout ---------- */
+.pp-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 56px;
+  padding-top: 56px;
+}
+
+/* table of contents */
+.pp-toc {
+  position: sticky;
+  top: 32px;
+  align-self: start;
+}
+
+.pp-toc__label {
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pp-toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
+  border-left: 1px solid var(--line);
+}
+
+.pp-toc li {
+  counter-increment: toc;
+}
+
+.pp .pp-toc a {
+  display: flex;
+  gap: 10px;
+  margin-left: -1px;
+  padding: 6px 0 6px 14px;
+  border-left: 2px solid transparent;
+  color: var(--text);
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.pp .pp-toc a::before {
+  content: counter(toc, decimal-leading-zero);
+  color: var(--muted);
+  font: 500 0.75rem var(--mono);
+  line-height: 1.7;
+}
+
+.pp .pp-toc a:hover {
+  color: var(--accent);
+  border-left-color: var(--secondary-accent);
+}
+
+/* ---------- Sections ---------- */
+.pp-body {
+  max-width: 66ch;
+}
+
+.pp-section {
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 24px; /* breathing room when jumping from the TOC */
+}
+
+.pp .pp-section h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 16px;
+  font-size: 1.75rem;
+}
+
+.pp-num {
+  color: var(--secondary-accent);
+  font: 500 0.85rem var(--mono);
+}
+
+.pp-section p,
+.pp-section li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+.pp-section p + p,
+.pp-section ul + p,
+.pp-section ol + p {
+  margin-top: 1em;
+}
+
+.pp-section ul {
+  margin: 12px 0 0;
+  padding-left: 1.2em;
+}
+
+.pp-section ul li::marker {
+  color: var(--secondary-accent);
+}
+
+.pp-section li + li {
+  margin-top: 6px;
+}
+
+.pp code {
+  padding: 2px 6px;
+  background: #f2f2f4;
+  color: var(--accent);
+  border-radius: 4px;
+  font: 0.85em var(--mono);
+}
+
+/* numbered data flow */
+.pp-flow {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: flow;
+}
+
+.pp-flow li {
+  position: relative;
+  counter-increment: flow;
+  padding: 16px 0 16px 56px;
+  border-top: 1px dashed var(--line);
+}
+
+.pp-flow li:last-child {
+  border-bottom: 1px dashed var(--line);
+}
+
+.pp-flow li::before {
+  content: counter(flow);
+  position: absolute;
+  left: 0;
+  top: 12px;
+  font-family: var(--heading);
+  font-size: 2.25rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.25px var(--accent);
+}
+
+/* services list */
+.pp-services {
+  margin: 20px 0 0;
+  border-top: 2px solid var(--text);
+}
+
+.pp-service {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.pp-service dt {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.pp-service dd {
+  margin: 0;
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* placeholders to fill in: easy to spot, impossible to miss */
+.pp-todo {
+  padding: 1px 6px;
+  background: rgba(244, 123, 95, 0.2);
+  color: var(--secondary-accent);
+  border: 1px dashed var(--secondary-accent);
+  border-radius: 4px;
+  font-size: 0.92em;
+}
+
+/* contact */
+.pp-contact {
+  padding-top: 8px;
+}
+
+.pp-contact p {
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pp .pp-contact a {
+  font-family: var(--heading);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  text-decoration: none;
+  border-bottom: 2px solid var(--secondary-accent);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 820px) {
+  .pp-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .pp-toc {
+    position: static;
+  }
+  .pp-toc ol {
+    columns: 2;
+    column-gap: 16px;
+  }
+  .pp-service {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 520px) {
+  .pp {
+    padding-inline: 16px;
+  }
+  .pp-toc ol {
+    columns: 1;
+  }
+}

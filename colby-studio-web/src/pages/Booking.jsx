@@ -11,6 +11,8 @@ const MUSIC_OPTIONS = [
   { value: 'neither', label: 'Neither' },
 ];
 
+const LAST_DAY = new Date(2026, 11, 12);
+
 /** Like useState, but loads from and saves to localStorage */
 function useLocalStorage(key, initial) {
   const [value, setValue] = useState(() => {
@@ -116,7 +118,13 @@ export default function Booking() {
             selected={day}
             onSelect={pickDay}
             defaultMonth={new Date()}
-            disabled={[{ before: new Date() }, { dayOfWeek: [0, 6] }]}
+            startMonth={new Date()}   // can't go back to past months
+            endMonth={LAST_DAY}       // can't page past the cutoff month
+            disabled={[
+              { before: new Date() },
+              { after: LAST_DAY },
+              { dayOfWeek: [0, 6] },
+            ]}
           />
         </div>
 

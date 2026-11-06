@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {NavLink} from 'react-router-dom'
+import MusicCarousel from '../components/MusicCarousel'
+import Contact from '../components/Contact'
 import '../styles/About.css'
 
 const FACTS = [
@@ -24,6 +26,42 @@ const STEPS = [
   },
 ]
 
+const ENGINEERS = [
+  { name: 'Anna Nelson',
+    year: '2029',
+    bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
+  },
+  { name: 'Henry Olson',
+    year: '2027',
+    bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
+  },
+  { name: 'Sharvil Bijumalla',
+    year: '2028',
+    bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
+  },
+  { name: 'Miles Romm',
+    year: '2029',
+    bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
+  },
+  { name: 'Zoe Paley',
+    year: '2029',
+    bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
+  },
+  { name: 'Maya Murphy',
+    year: '2030',
+    bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
+  },
+  { name: 'Alex Duan',
+    year: '2029',
+    bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
+  },
+  { name: 'Rafi Aronson',
+    year: '2027',
+    bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
+  },  
+  
+]
+
 const SOFTWARE = [
   { name: 'Pro Tools' },
   { name: 'Ableton' },
@@ -31,8 +69,36 @@ const SOFTWARE = [
   { name: 'FL Studio', soon: true },
 ]
 
+function EngineerCarousel({ engineers }) {
+  const [i, setI] = useState(0)
+  const [dir, setDir] = useState('next')
+  const n = engineers.length
+  const e = engineers[i]
+
+  const go = (step) => {
+    setDir(step > 0 ? 'next' : 'prev')
+    setI((i + step + n) % n) // wraps around = infinite
+  }
+
+  return (
+    <div className="ap-carousel">
+      <button type="button" className="ap-carousel__btn" onClick={() => go(-1)} aria-label="Previous engineer">←</button>
+
+      <div key={i} className={`ap-engineer ap-engineer--${dir}`}>
+        <h3>{e.name}</h3>
+        <p className="ap-engineer__year">Class of {e.year}</p>
+        <p>{e.bio}</p>
+      </div>
+
+      <button type="button" className="ap-carousel__btn" onClick={() => go(1)} aria-label="Next engineer">→</button>
+    </div>
+  )
+}
+
+
 function About() {
   return (
+    <div className="about-page-wrapper">
     <main className="about-page">
       {/* ---------- Hero ---------- */}
       <header className="ap-hero">
@@ -116,6 +182,9 @@ function About() {
             the blues. All of them can teach you the fundamentals of music
             production and performance.
           </p>
+          
+           <EngineerCarousel engineers={ENGINEERS} />
+           <h3 className="ap-heading">Software</h3>
 
           <ul className="ap-tags" aria-label="Software the engineers know">
             {SOFTWARE.map((s) => (
@@ -129,8 +198,10 @@ function About() {
             Use something else? The managers can request it through the music
             department. It’s usually approved within about a week.
           </p>
+
         </div>
       </section>
+
 
       {/* ---------- Pull quote ---------- */}
       <figure className="ap-quote">
@@ -177,7 +248,11 @@ function About() {
         <NavLink className="ap-cta__btn" to="/booking">Book a session</NavLink>
       </section>
 
+
     </main>
+      <MusicCarousel />
+      <Contact />
+    </div>
   )
 }
 

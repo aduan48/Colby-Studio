@@ -1,0 +1,55 @@
+/* ---------- Studio ticker ---------- */
+.ticker {
+  width: 100%;
+  overflow: hidden;
+  padding: 18px 0;
+  border-block: 2px solid var(--text);
+  background: #fff;
+}
+
+.ticker__track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 40s linear infinite;
+}
+
+/* pause while someone's looking at it */
+.ticker:hover .ticker__track {
+  animation-play-state: paused;
+}
+
+.ticker__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding-right: 0.6em; /* every item identical, so -50% lands exactly on the copy */
+  font-family: var(--heading);
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text);
+}
+
+/* every other word as outline */
+.ticker__item:nth-child(even) {
+  color: transparent;
+  -webkit-text-stroke: 1.0px var(--accent);
+}
+
+.ticker__dot {
+  width: 0.22em;
+  height: 0.22em;
+  border-radius: 50%;
+  background: var(--secondary-accent);
+}
+
+@keyframes ticker-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker__track {
+    animation: none;
+  }
+}

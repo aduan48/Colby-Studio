@@ -37,9 +37,14 @@ function Navbar() {
      </div>
             
       <div className='rightSide'> 
-        <button className="toggle-btn">
-          <FaInstagram size={30} />
-        </button>
+          <a 
+            className="toggle-btn" 
+            href="https://www.instagram.com/thestudioatcolby/?hl=en"
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <FaInstagram size={30} />
+          </a>
       </div>
     </div>
   );
