@@ -7,22 +7,22 @@ import '../styles/About.css'
 const FACTS = [
   { label: 'Where', value: 'Gordon Center, basement' },
   { label: 'Sessions', value: '2–4 hours' },
-  { label: 'Run by', value: 'Student engineers' },
+  { label: 'Run by', value: 'Colby Student engineers' },
   { label: 'Join Us for Mix Club', value: 'Mondays, 4:30' },
 ]
 
 const STEPS = [
   {
-    title: 'Scan the QR code',
-    body: 'Posters around campus link straight to the sign-up form.',
+    title: 'Come up with an idea',
+    body: 'Whether you\'re a beginner or an experienced musician, think about what you want to create.',
   },
   {
-    title: 'Pick a time slot',
-    body: 'Sessions usually run two to four hours with a student manager. Each one has their own schedule and specialty.',
+    title: 'Fill out our booking form',
+    body: 'Visit our booking page to select a time slot and provide details about your project. Our team will review your request and confirm your session.',
   },
   {
-    title: 'Make something',
-    body: 'Your engineer runs the board and teaches you as much as you want to learn, from the basics to mastering.',
+    title: 'Create your audio vision',
+    body: 'Your engineer runs the board and mixes your audio. We\'ll help you capture your ideas and make them sound their best.',
   },
 ]
 
@@ -108,9 +108,7 @@ function About() {
         </h1>
         <p className="ap-lede">
           A student-run recording studio in the basement of the Gordon Center,
-          open to anyone at Colby. Maybe you’ve never touched a mixer, or maybe
-          you have albums under your belt and just need help with the master.
-          Either way, there’s a seat for you.
+          open to anyone at Colby.
         </p>
 
         <dl className="ap-facts">
@@ -132,11 +130,7 @@ function About() {
         <div className="ap-body">
           <p className="ap-dropcap">
             The Gordon Center opened in late 2023, and the studio was finished
-            in early 2024. Even then, students couldn’t use it, because no one
-            had been trained to run it. That’s changed.
-          </p>
-          <p>
-            The studio is now open to every Colby student, with a member of the
+            in early 2024. It is open to every Colby student, with a member of the
             Mixing Club there to supervise. There’s plenty of room in the
             recording space to bring in just about any instrument, and the
             managers will help you get it recorded.
@@ -228,19 +222,14 @@ function About() {
           <p>
             Mix Club happens alongside studio time. Alex Fulton, an instructor
             of audio engineering and music production, picks a track the room
-            likes and the group takes it apart together. One week might be about
-            reverb, the next about chord changes.
-          </p>
-          <p className="ap-aside">
-            “What are the secrets here, and what can we learn from that in our
-            own mixes?”
+            likes and the group takes it apart together. Join us to learn more!
           </p>
         </div>
       </section>
 
       {/* ---------- CTA ---------- */}
       <section className="ap-cta">
-        <h2>No judgment. Just try&nbsp;it.</h2>
+        <h2>Book us today</h2>
         <p>
           The Studio is a place for growth and discovery. Book a session and see
           what you make.
