@@ -5,4 +5,8 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   server: { proxy: { '/api': 'http://localhost:3001' } },
+  build: {
+    cssTarget: ['chrome107', 'safari15', 'firefox103', 'edge107'],
+  },
 });
+
