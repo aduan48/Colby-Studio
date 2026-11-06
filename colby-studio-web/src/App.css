@@ -10,3 +10,7 @@ html {
 #our-work {
   scroll-margin-top: 80px; /* height of your navbar, so the title isn't hidden under it */
 }
+
+.page-loading {
+  min-height: 100vh;
+}

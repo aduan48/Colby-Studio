@@ -1,6 +1,5 @@
 import React from 'react'
 import '../styles/InfoSection.css'
-import eventImage from '../assets/drums.jpeg'
 import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-day-picker';
 

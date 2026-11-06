@@ -1,6 +1,6 @@
 import React from 'react'
-import studioImage from '../assets/sliders.jpeg'
-import eventImage from '../assets/drums.jpeg'
+import studioImage from '../assets/sliders.webp'
+import eventImage from '../assets/drums.webp'
 import { NavLink } from 'react-router-dom';
 import Contact from '../components/Contact'
 import InfoSection from '../components/InfoSection'
