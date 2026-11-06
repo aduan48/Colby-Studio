@@ -71,7 +71,7 @@ Colby-Studio/
 │   │   ├── eventBookings.js   # POST a live-recording / event request
 │   │   └── contact.js         # POST a contact-form message
 │   ├── db.js                  # Opens bookings.db and creates tables
-│   ├── bookings.db            # SQLite database (git-ignored)
+│   ├── bookings.db            # SQLite database 
 │   └── .env                   # Secrets (git-ignored)
 │
 └── asset-library/             # Brand assets
@@ -124,14 +124,12 @@ The backend reads its settings from `server/.env`. This file is **never committe
 | Variable | What it's for |
 |---|---|
 | `PORT` | Port the API listens on (`3001`; must match the Nginx `proxy_pass`) |
-| `HOST` | `127.0.0.1` in production, so the API is only reachable through Nginx |
-| `DB_PATH` | Optional. Overrides where `bookings.db` lives |
-| `GMAIL_USER` | Gmail address that sends confirmation emails |
-| `GMAIL_APP_PASSWORD` | Gmail **app password** (not the account password) |
-| `GOOGLE_SHEET_ID` | ID from the Google Sheet URL |
-| `GOOGLE_SERVICE_ACCOUNT_*` | Service-account credentials for writing to the Sheet |
+| `GMAIL_USER` | Gmail address that has access to the group email |
+| `STUDIO_EMAIL` | Gmail address that sends confirmation emails |
+| `SECRETARY_EMAIL` | Gmail address of the secretary that als gets all communications|
+| `GMAIL_APP_PASSWORD` | Gmail **app password** for GMAIL_USER (not the account password) |
+| `GOOGLE_SCRIPT_URL` | URL to the Google SHeet |
 
-> **Google Sheets:** share the Sheet with the service account's email address as an **Editor**, or writes will fail.
 
 ---
 
@@ -153,6 +151,10 @@ npm start                   # → API on 127.0.0.1:3001
 cd colby-studio-web
 npm install
 npm run dev                 # → http://localhost:5173
+
+# OR Combined
+cd Colby-Studio
+npm run dev                 # starts the frontend and backend
 ```
 
 The Vite dev server proxies `/api` to `localhost:3001`, so the frontend and backend talk to each other the same way they do in production.
@@ -231,7 +233,7 @@ echo "Deployed."
 | Add or edit an engineer | `ENGINEERS` array in `pages/About.jsx` |
 | Change which days can be booked | `disabled` prop on `<DayPicker>` in `pages/Booking.jsx` |
 | Change available time slots | `server/routes/availability.js` |
-| Edit the confirmation email | `server/routes/bookings.js` |
+| Edit the confirmation email | `server/routes/bookings.js` or `server/routes/eventBookings.js` or `server/routes/contact.js`  |
 | Add a page | Create `pages/NewPage.jsx`, add a lazy import and `<Route>` in `App.jsx`, link it in `Footer.jsx` and `Navbar.jsx` |
 | Add a footer link | `COLUMNS` array in `components/Footer.jsx` |
 
