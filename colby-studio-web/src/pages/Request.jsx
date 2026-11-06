@@ -100,7 +100,7 @@ export default function Request() {
             selected={day}
             onSelect={pickDay}
             defaultMonth={new Date()}
-            disabled={[{ before: new Date() }, { dayOfWeek: [0, 6] }]}
+            disabled={[{ before: new Date() }]}
           />
         </div>
 

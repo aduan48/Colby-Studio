@@ -123,7 +123,6 @@ export default function Booking() {
             disabled={[
               { before: new Date() },
               { after: LAST_DAY },
-              { dayOfWeek: [0, 6] },
             ]}
           />
         </div>
