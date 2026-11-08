@@ -4,8 +4,11 @@ import { FaInstagram } from 'react-icons/fa'
 import Logo from '../assets/combined_white.svg'
 import '../styles/Footer.css'
 
-const INSTAGRAM = 'https://www.instagram.com/thestudioatcolby/'
 
+
+const INSTAGRAM = 'https://www.instagram.com/thestudioatcolby/' //instagram link
+
+//these are the footer novigation columns with links 
 const COLUMNS = [
   {
     title: 'Explore',

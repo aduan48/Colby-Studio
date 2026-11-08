@@ -1,8 +1,11 @@
 import React from 'react'
 import '../styles/InfoSection.css'
 import { NavLink } from 'react-router-dom';
-import { Nav } from 'react-day-picker';
 
+/**
+ * 
+ * @returns a short info section that talke about what the recoridng space does 
+ */
 function InfoSection() {
   return (
     <div className="info-section">

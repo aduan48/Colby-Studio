@@ -21,21 +21,40 @@ function useLocalStorage(key, initial) {
   return [value, setValue];
 }
 
+/**
+ * This is the contact form, it takes user inputs of name email and message and sends it to the backend so it can
+ * be sent as an email
+ * @returns 
+ */
 function Contact() {
-    const [status, setStatus] = useState('');  
+    const [status, setStatus] = useState('');  //the status of submission 
+    
+    //this is the form
     const [form, setForm] = useLocalStorage('contact:form', {
     name: '',
     email: '',
     message: ' ',
     });
 
+    //this makes sure that the text box updates the form as users type
     const handleChanges = (e) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
 
-    const book = async (e) => {
+    //This is the core logic that fetches the api to the backend and send the values of the form in a JSON
+    /**
+     * JSON format:
+     * 
+     * {
+     *    "name": "john doe",
+     *    "email": "jdoe@gmail.com"
+     *    "message" : "your message"
+     * }
+     */
+    //this also sets the status bar
+    const contact = async (e) => {
         e.preventDefault();
         setStatus('Sending request…');
 
@@ -72,7 +91,7 @@ function Contact() {
           </ul>
         </div>
 
-        <form className="contact__form" onSubmit={book}>
+        <form className="contact__form" onSubmit={contact}>
           <div className="field-row">
             <div className="field">
               <label htmlFor="name">Name</label>

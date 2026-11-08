@@ -2,7 +2,7 @@ import React from 'react'
 import MusicCarousel from '../components/MusicCarousel';
 import InfoSection from '../components/InfoSection';
 import Contact from '../components/Contact';
-import Hero from "../components/Hero2";
+import Hero from "../components/Hero";
 import HowItWorks from "../components/HowItWorks";
 import StudioTicker from "../components/StudioTicker";
 import '../styles/Home.css';

@@ -1,8 +1,24 @@
 import React, { useState, useRef, useEffect } from "react";
-import tracks from "./tracks.json";
+import tracks from "./tracks.json"; //the track information
 import "../styles/MusicCarousel.css";
 import vinylImage from "../assets/a_side_vinyl.webp";
 
+/**
+ * Shared wrapper for small inline SVG icons (play, pause, arrows, etc.).
+ *
+ * Sets up the outer <svg> once so each icon only needs its own <path>/<rect>
+ * shapes as children. Icons are 18×18 on a 24×24 grid, drawn as 1.75px
+ * rounded outlines, and use `currentColor`, so they automatically match
+ * the text color of the button they sit in (including hover states).
+ *
+ * @param {React.ReactNode} children - The shapes that make up the icon.
+ * @param {string} [fill="none"] - Fill color. Leave as "none" for outline
+ *   icons, or pass "currentColor" for solid ones (e.g. a filled play button).
+ *
+ * @example
+ * <Icon><path d="M6 9l6 6 6-6" /></Icon>                       // outline chevron
+ * <Icon fill="currentColor"><path d="M8 5v14l11-7z" /></Icon>  // solid play
+ */
 const Icon = ({ children, fill = "none" }) => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill={fill}
        stroke="currentColor" strokeWidth="1.75"
@@ -11,6 +27,10 @@ const Icon = ({ children, fill = "none" }) => (
   </svg>
 );
 
+/**
+ * 
+ * @returns a stage with scrolling covers behind, spinning vinyl, glass panel on top
+ */
 function MusicCarousel() {
   const [index, setIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -18,27 +38,36 @@ function MusicCarousel() {
   const [progress, setProgress] = useState(0);
   const audioRef = useRef(null);
 
-  const track = tracks[index];
+  const track = tracks[index]; //index of the track
 
+  /** Keep the <audio> element in sync with isPlaying (and restart playback when the track changes) */
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio) return;
-    if (isPlaying) audio.play().catch(() => setIsPlaying(false));
-    else audio.pause();
-  }, [index, isPlaying]);
+    if (!audio) return; // audio element not on the page yet
+    if (isPlaying) audio.play().catch(() => setIsPlaying(false)); // start playing; if the browser blocks it, reset the button
+    else audio.pause(); // pause when isPlaying is false
+  }, [index, isPlaying]);// re-run on play/pause and when switching tracks
 
+  /**
+   * it will update the current audio ref to muted or not muted
+   */
   useEffect(() => {
     if (audioRef.current) audioRef.current.muted = isMuted;
   }, [isMuted]);
 
+  /**
+   * this handles changing of the track, 
+   * @param {*} i 
+   */
   const goTo = (i) => {
-    setIndex((i + tracks.length) % tracks.length);
-    setProgress(0);
+    setIndex((i + tracks.length) % tracks.length); //loops bacl to beginning if it goes over index
+    setProgress(0); //sets the progress of the song to 0
   };
 
+  /** Runs as the song plays: converts the playback position into a 0–100% value for the progress bar */
   const handleTime = (e) => {
-    const { currentTime, duration } = e.currentTarget;
-    if (duration) setProgress((currentTime / duration) * 100);
+    const { currentTime, duration } = e.currentTarget; // seconds played, total seconds
+    if (duration) setProgress((currentTime / duration) * 100); // skip until the song's length has loaded
   };
 
   return (

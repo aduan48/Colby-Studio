@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import '../styles/HowItWorks.css'
 
+//the steps needed to make it work
 const STEPS = [
   {
     title: 'Come up with an idea',
@@ -17,6 +18,10 @@ const STEPS = [
   },
 ]
 
+/**
+ * 
+ * @returns the steps mapped out into 1 2 and 3 with a heading and a link to bookings
+ */
 function HowItWorks() {
   return (
     <section className="hiw" aria-labelledby="hiw-title">

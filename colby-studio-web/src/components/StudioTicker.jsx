@@ -14,6 +14,10 @@ const WORDS = [
   'Create',
 ]
 
+/**
+ * 
+ * @returns the ifninte ticker with keywords related with the studio
+ */
 function StudioTicker() {
   // two copies side by side; sliding left by exactly one copy makes a seamless loop
   const items = [...WORDS, ...WORDS]

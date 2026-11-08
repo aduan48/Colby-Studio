@@ -1,10 +1,10 @@
 /* =========================================================
-   Hero 2
+   Hero 
    Desktop: typography only, anchored bottom-left
    Tablet/phone: spinning record + buttons
    ========================================================= */
 
-.hero2 {
+.hero {
   --white-80: rgba(255, 255, 255, 0.8);
   --white-20: rgba(255, 255, 255, 0.2);
 
@@ -18,14 +18,14 @@
 }
 
 /* ---------- Background layers ---------- */
-.hero2-bg {
+.hero-bg {
   position: absolute;
   inset: 0;
-  z-index: -3;
+  z-index: -9;
 }
 
-.hero2-bg .gradient-canvas,
-.hero2-bg canvas {
+.hero-bg .gradient-canvas,
+.hero-bg canvas {
   position: absolute;
   inset: 0;
   display: block;
@@ -38,7 +38,7 @@
 
 
 /* ---------- Layout (desktop) ---------- */
-.hero2-inner {
+.hero-inner {
   flex: 1;
   display: grid;
   align-content: end;          /* push content to the bottom */
@@ -49,11 +49,11 @@
 }
 
 /* ---------- Copy ---------- */
-.hero2-copy {
+.hero-copy {
   text-align: left;
 }
 
-.hero2-title {
+.hero-title {
   margin: 0;
   font-size: clamp(4rem, 9.5vw, 9rem);
   line-height: 0.9;
@@ -61,14 +61,14 @@
   color: #fff;
 }
 
-.hero2-accent {
+.hero-accent {
   color: var(--accent);
   -webkit-text-stroke: 4px #fff;
   paint-order: stroke fill; /* draws the outline behind the fill so letters don't get thinner */
 }
 
 /* ---------- Actions ---------- */
-.hero2-actions {
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -76,7 +76,7 @@
   margin-top: clamp(32px, 4vh, 48px);
 }
 
-.hero2-btn {
+.hero-btn {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -92,12 +92,12 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.hero2-btn:hover {
+.hero-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 36px rgba(10, 12, 50, 0.45);
 }
 
-.hero2-link {
+.hero-link {
   position: relative;
   padding: 6px 0;
   font: 600 0.9rem var(--sans);
@@ -108,7 +108,7 @@
 }
 
 /* underline that draws in on hover */
-.hero2-link::after {
+.hero-link::after {
   content: "";
   position: absolute;
   left: 0;
@@ -121,22 +121,22 @@
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.hero2-link:hover::after {
+.hero-link:hover::after {
   transform: scaleX(1);
 }
 
-.hero2-btn:focus-visible,
-.hero2-link:focus-visible {
+.hero-btn:focus-visible,
+.hero-link:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 4px;
 }
 
 /* ---------- Record (hidden on desktop) ---------- */
-.hero2-visual {
+.hero-visual {
   display: none;
 }
 
-.hero2-disc {
+.hero-disc {
   display: grid;
   place-items: center;
   width: 100%;
@@ -150,76 +150,80 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
-.hero2-logo {
+.hero-logo {
   display: block;
   width: 82%;
   height: auto;
-  animation: hero2-spin 40s linear infinite;
+  animation: hero-spin 40s linear infinite;
 }
 
 /* ---------- Entrance animation ---------- */
-.hero2-reveal {
+.hero-reveal {
   opacity: 0;
   transform: translateY(18px);
-  animation: hero2-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: var(--d, 0s);
 }
 
-@keyframes hero2-in {
+@keyframes hero-in {
   to { opacity: 1; transform: none; }
 }
 
-@keyframes hero2-spin {
+@keyframes hero-spin {
   to { transform: rotate(360deg); }
 }
 
 /* ---------- Tablet & phone: record + buttons ---------- */
 @media (max-width: 900px) {
-  .hero2-inner {
+  .hero {
+    min-height: 90vh;
+  }
+  .hero-inner {
     align-content: center;
     justify-items: center;
     gap: 40px;
     padding: 32px 20px 48px;
+    margin-top: 50px;
   }
 
-  .hero2-visual {
+  .hero-visual {
     display: block;
     order: -1;                       /* record above the buttons */
     width: min(320px, 70vw);
   }
 
-  .hero2-title {
+  .hero-title {
     display: none;
   }
 
-  .hero2-copy {
+  .hero-copy {
     width: 100%;
     text-align: center;
   }
 
-  .hero2-actions {
+  .hero-actions {
     flex-direction: column;
     justify-content: center;
     gap: 18px;
     margin-top: 0;
   }
 
-  .hero2-btn {
+  .hero-btn {
     justify-content: center;
     width: min(280px, 100%);
   }
 
   /* even wash, since there's no headline to protect */
-  .hero2-shade {
+  .hero-shade {
     background: rgba(22, 24, 90, 0.35);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero2-logo {
+  .hero-logo {
     animation: none;
   }
-  .hero2-reveal {
+  .hero-reveal {
     opacity: 1;
     transform: none;
     animation: none;
