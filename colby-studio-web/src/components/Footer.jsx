@@ -18,8 +18,8 @@ const COLUMNS = [
   {
     title: 'Book',
     links: [
-      { to: '/studio-booking', label: 'Studio time' },
-      { to: '/special-request', label: 'Special request' },
+      { to: '/studio-booking', label: 'Studio Bookings' },
+      { to: '/special-request', label: 'Event Bookings' },
     ],
   },
 ]
@@ -59,11 +59,10 @@ function Footer() {
         <div className="footer__col">
           <h2 className="footer__heading">Visit</h2>
           <address className="footer__address">
-            Gordon Center, basement
-            <br />
+            Gordon Performance Arts Center,
             Colby College
             <br />
-            Waterville, ME
+            Waterville, ME 04901
           </address>
           <p className="footer__note">Mix Club meets Mondays at 4:30&nbsp;p.m.</p>
         </div>
