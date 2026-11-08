@@ -1,5 +1,5 @@
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config';   // was 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -7,6 +7,10 @@ export default defineConfig({
   server: { proxy: { '/api': 'http://localhost:3001' } },
   build: {
     cssTarget: ['chrome107', 'safari15', 'firefox103', 'edge107'],
+  },
+  test: {
+    environment: 'jsdom',             // a fake browser for the tests
+    setupFiles: './src/test/setup.js',
   },
 });
 
