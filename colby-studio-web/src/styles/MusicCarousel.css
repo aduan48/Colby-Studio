@@ -15,7 +15,7 @@
 
 /* ---------- Stage ---------- */
 .mc-stage {
-  --vinyl: clamp(300px, 80vw, 700px);
+  --vinyl: clamp(300px, 60vw, 1200px);
   position: relative;
   /* tall enough to show the record's center plus room for the panel */
   height: calc(var(--vinyl) * 0.58 + 110px);
