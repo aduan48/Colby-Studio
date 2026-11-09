@@ -30,7 +30,7 @@ export default [
   {
     "Manager": "Zoe Paley",
     "Day": "Wed",
-    "Email": "zcpale29@colby.edu",
+    "Email": "zcpale28@colby.edu",
     "Time-Start": 16,
     "Length": 4,
   },
