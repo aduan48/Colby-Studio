@@ -5,15 +5,15 @@ import '../styles/HowItWorks.css'
 //the steps needed to make it work
 const STEPS = [
   {
-    title: 'Come up with an idea',
-    body: 'Whether you\'re a beginner or an experienced musician, think about what you want to create.',
+    title: 'Bring your music',
+    body: 'Whether you\'re a beginner or an experienced musician, think about what you want to create. It can be an EP, albulm or a recorded rehersal',
   },
   {
     title: 'Fill out our booking form',
     body: 'Visit our booking page to select a time slot and provide details about your project. Our team will review your request and confirm your session.',
   },
   {
-    title: 'Create your audio vision',
+    title: 'Create your tracks',
     body: 'Your engineer runs the board and mixes your audio. We\'ll help you capture your ideas and make them sound their best.',
   },
 ]

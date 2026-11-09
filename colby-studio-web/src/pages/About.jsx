@@ -13,15 +13,15 @@ const FACTS = [
 
 const STEPS = [
   {
-    title: 'Come up with an idea',
-    body: 'Whether you\'re a beginner or an experienced musician, think about what you want to create.',
+    title: 'Bring your music',
+    body: 'Whether you\'re a beginner or an experienced musician, think about what you want to create. It can be an EP, albulm or a recorded rehersal',
   },
   {
     title: 'Fill out our booking form',
     body: 'Visit our booking page to select a time slot and provide details about your project. Our team will review your request and confirm your session.',
   },
   {
-    title: 'Create your audio vision',
+    title: 'Create your tracks',
     body: 'Your engineer runs the board and mixes your audio. We\'ll help you capture your ideas and make them sound their best.',
   },
 ]
@@ -44,11 +44,7 @@ const ENGINEERS = [
     bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
   },
   { name: 'Zoe Paley',
-    year: '2029',
-    bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
-  },
-  { name: 'Maya Murphy',
-    year: '2030',
+    year: '2028',
     bio: 'I\'ve been working in the recording studio since my freshman year, specializing in live music production. My favorite band is [Band Name].',
   },
   { name: 'Alex Duan',
@@ -66,7 +62,6 @@ const SOFTWARE = [
   { name: 'Pro Tools' },
   { name: 'Ableton' },
   { name: 'Logic' },
-  { name: 'FL Studio', soon: true },
 ]
 
 function EngineerCarousel({ engineers }) {
@@ -132,7 +127,23 @@ function About() {
             The Gordon Center opened in late 2023, and the studio was finished
             in early 2024. It is open to every Colby student, with a member of the
             Mixing Club there to supervise. There’s plenty of room in the
-            recording space to bring in just about any instrument, and the
+            recording space to bring in just about any instrument or ensemble, and the
+            managers will help you get it recorded.
+          </p>
+        </div>
+      </section>
+
+      <section className="ap-section">
+        <div className="ap-label">
+          <span className="ap-num">02</span>
+          <h2>Meet the supervisor</h2>
+        </div>
+        <div className="ap-body">
+          <p>
+            The Gordon Center opened in late 2023, and the studio was finished
+            in early 2024. It is open to every Colby student, with a member of the
+            Mixing Club there to supervise. There’s plenty of room in the
+            recording space to bring in just about any instrument or ensemble, and the
             managers will help you get it recorded.
           </p>
         </div>
@@ -141,7 +152,7 @@ function About() {
       {/* ---------- 02 How it works ---------- */}
       <section className="ap-section">
         <div className="ap-label">
-          <span className="ap-num">02</span>
+          <span className="ap-num">03</span>
           <h2>How it works</h2>
         </div>
         <div className="ap-body">
@@ -162,7 +173,7 @@ function About() {
       {/* ---------- 03 The engineers ---------- */}
       <section className="ap-section">
         <div className="ap-label">
-          <span className="ap-num">03</span>
+          <span className="ap-num">04</span>
           <h2>The engineers</h2>
         </div>
         <div className="ap-body">
@@ -210,7 +221,7 @@ function About() {
       {/* ---------- 04 Mix Club ---------- */}
       <section className="ap-section">
         <div className="ap-label">
-          <span className="ap-num">04</span>
+          <span className="ap-num">05</span>
           <h2>Mix Club</h2>
         </div>
         <div className="ap-body">

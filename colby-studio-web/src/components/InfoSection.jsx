@@ -22,8 +22,7 @@ function InfoSection() {
               </p>
 
               <p>
-                We specialize in recording acoustic instruments, but we're not limited to
-                them. Bring us a band, a solo project, or an
+                We specialize in recording acoustic, electronic or virtual instruments. Bring us a band, ensemble, a solo project, or an
                 experimental sound piece, and we'll help you figure out how to bring it to
                 life.
               </p>

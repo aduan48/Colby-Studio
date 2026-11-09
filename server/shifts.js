@@ -35,13 +35,6 @@ export default [
     "Length": 4,
   },
   {
-    "Manager": "Maya Murphy",
-    "Day": "Wed",
-    "Email": "mamurp30@colby.edu",
-    "Time-Start": 20,
-    "Length": 4,
-  },
-  {
     "Manager": "Rafi Aronson",
     "Day": "Fri",
     "Email": "rkaron27@colby.edu",
