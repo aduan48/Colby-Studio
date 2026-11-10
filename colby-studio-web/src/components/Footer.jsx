@@ -16,6 +16,7 @@ const COLUMNS = [
       { to: '/', label: 'Home' },
       { to: '/about', label: 'About' },
       { to: '/booking', label: 'Bookings' },
+      { to: '/archive', label: 'Archive'},
     ],
   },
   {

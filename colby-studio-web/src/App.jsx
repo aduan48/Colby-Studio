@@ -13,6 +13,7 @@ const Request = lazy(() => import('./pages/Request'));
 const BookingsPage = lazy(() => import('./pages/BookingsPage'));
 const Booking = lazy(() => import('./pages/Booking'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const Archive = lazy(() => import('./pages/Archive'));
 
 /** Wraps a page in the transition + a placeholder while its code downloads */
 const page = (el) => (
@@ -33,6 +34,7 @@ function AnimatedRoutes() {
         <Route path="/special-request" element={page(<Request />)} />
         <Route path="/privacy-policy" element={page(<PrivacyPolicy />)} />
         <Route path="/about" element={page(<About />)} />
+        <Route path="/archive" element = {page(<Archive />)} />
       </Routes>
     </AnimatePresence>
   );

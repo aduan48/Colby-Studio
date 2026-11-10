@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {NavLink} from 'react-router-dom'
 import MusicCarousel from '../components/MusicCarousel'
 import Contact from '../components/Contact'
+import supervisor from '../assets/supervisor.webp'
 import '../styles/About.css'
 
 const FACTS = [
@@ -139,12 +140,23 @@ function About() {
           <h2>Meet the supervisor</h2>
         </div>
         <div className="ap-body">
+          <img src={supervisor} alt="supervisor" />
+          <p className="ap-dropcap">
+            The Studio at Colby is supervised by Alex Fulton. Alex is a music producer, sound designer, and audio engineer. 
+            He has produced original music and sound design for series on Showtime, Netflix, BET, and CBS, and for 
+            brands including Google, Nike, Mazda, General Mills, GSK, and John Deere, among others.
+             His company, Fulton Street Media Group, implements the science behind music’s ability to 
+             encode and recall memory in custom executions for advertising, health, and education.
+          </p>
           <p>
-            The Gordon Center opened in late 2023, and the studio was finished
-            in early 2024. It is open to every Colby student, with a member of the
-            Mixing Club there to supervise. There’s plenty of room in the
-            recording space to bring in just about any instrument or ensemble, and the
-            managers will help you get it recorded.
+            In addition to his professional work, Fulton is an instructor of audio engineering and music production at Colby College,
+             where he oversees the Gordon Center Mixdown Studio. His Jan Plan course, Studio Recording Techniques, trains students in 
+             the use of the facility and immerses them in the processes of music production. Students who complete the course are eligible 
+             to be hired as Studio Managers in the Mixdown Studio.
+          </p>
+          <p>
+            Fulton also maintains a private recording studio and venue in downtown Waterville, where he produces records
+             with local and visiting artists and hosts live immersive music and multimedia events.
           </p>
         </div>
       </section>

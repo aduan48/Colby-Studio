@@ -134,6 +134,16 @@
   line-height: 1.7;
 }
 
+.ap-body img{
+  width: 100%;
+  aspect-ratio: 16 / 9;    
+  object-fit: cover;
+  object-position: center;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  display: block;
+}
+
 .ap-dropcap::first-letter {
   float: left;
   margin: 6px 10px 0 0;

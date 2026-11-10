@@ -21,6 +21,7 @@ function Navbar() {
      <div className='center' >
         <NavLink to="/" > HOME </NavLink>
         <NavLink to="/about"> ABOUT </NavLink>
+        <NavLink to="/archive"> ARCHIVE </NavLink>
         <NavLink to="/booking"> BOOK US </NavLink>
      </div>
             
