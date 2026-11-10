@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import tracks from "./tracks.json"; //the track information
 import "../styles/MusicCarousel.css";
 import vinylImage from "../assets/a_side_vinyl.webp";
@@ -40,6 +40,25 @@ function MusicCarousel() {
 
   const track = tracks[index]; //index of the track
 
+  const stripRef = useRef(null);
+  const groupRef = useRef(null);
+  const [copies, setCopies] = useState(2);
+
+  /** Render enough copies of the covers to fill the screen, plus one to slide in */
+  useLayoutEffect(() => {
+    const update = () => {
+      const stripW = stripRef.current?.offsetWidth;
+      const groupW = groupRef.current?.offsetWidth;
+      if (!stripW || !groupW) return;
+      setCopies(Math.max(2, Math.ceil(stripW / groupW) + 1));
+    };
+    update();
+    const ro = new ResizeObserver(update); // also fires as cover images load in
+    ro.observe(stripRef.current);
+    ro.observe(groupRef.current);
+    return () => ro.disconnect();
+  }, []);
+
   /** Keep the <audio> element in sync with isPlaying (and restart playback when the track changes) */
   useEffect(() => {
     const audio = audioRef.current;
@@ -75,19 +94,25 @@ function MusicCarousel() {
 
       {/* Stage: scrolling covers behind, spinning vinyl, glass panel on top */}
       <div className="mc-stage">
-        <div className="mc-strip">
-          <div className="mc-strip-inner">
-            {/* list is doubled so the loop is seamless */}
-            {[...tracks, ...tracks].map((t, i) => (
-              <img
-                key={i}
-                className="mc-strip-cover"
-                src={t.image}
-                alt={i < tracks.length ? `${t.Title} cover art` : ""}
-                onClick={() => goTo(i % tracks.length)}
-              />
-            ))}
-          </div>
+        <div className="mc-strip" ref={stripRef}>
+          {Array.from({ length: copies }, (_, c) => (
+            <div
+              key={c}
+              ref={c === 0 ? groupRef : undefined}
+              className="mc-strip-group"
+              aria-hidden={c > 0 || undefined} // screen readers only hear the first copy
+            >
+              {tracks.map((t, i) => (
+                <img
+                  key={i}
+                  className="mc-strip-cover"
+                  src={t.image}
+                  alt={c === 0 ? `${t.Title} cover art` : ""}
+                  onClick={() => goTo(i)}
+                />
+              ))}
+            </div>
+          ))}
         </div>
 
        <div className={`mc-vinyl ${isPlaying ? "is-spinning" : ""}`}>

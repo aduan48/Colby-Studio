@@ -1,17 +1,13 @@
-/* Section is full width now; the player below stays narrow */
+/* Section is full width; the player below stays narrow */
 .mc {
   --ink: #111;
   --muted: #8a8a8a;
   --line: #e6e6e6;
 
-  padding: 24px 0 0;  
+  padding: 0; /* no extra space above the vinyl */
   color: var(--ink);
   overflow: hidden;
-  padding-top: 0; /* no extra space above the vinyl */
 }
-
-
-
 
 /* ---------- Stage ---------- */
 .mc-stage {
@@ -22,40 +18,44 @@
   overflow: hidden;
 }
 
-
-/* Scrolling cover strip (back layer) */
+/* ---------- Scrolling cover strip (back layer) ---------- */
 .mc-strip {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   height: 62%;
+  display: flex; /* copies sit side by side */
 }
 
-.mc-strip-inner {
+.mc-strip-group {
   display: flex;
-  width: auto;
+  flex-shrink: 0;
   height: 95%;
   animation: mc-marquee 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-.mc-strip:hover .mc-strip-inner {
+.mc-strip:hover .mc-strip-group {
   animation-play-state: paused;
 }
 
 .mc-strip-cover {
+  flex-shrink: 0; /* never squash a cover */
   height: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  margin-right: 16px; /* margin, not gap, so the -50% loop lines up exactly */
+  margin-right: 16px; /* margin, not gap, so copies join seamlessly */
   cursor: pointer;
 }
 
 @keyframes mc-marquee {
-  to { transform: translateX(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-100%, 0, 0); }
 }
 
-/* Vinyl (front layer) */
+/* ---------- Vinyl (front layer) ---------- */
 .mc-vinyl {
   position: absolute;
   top: -5%;
@@ -112,22 +112,7 @@
   to { transform: rotate(360deg); }
 }
 
-/* Respect users who turn off animations */
-@media (prefers-reduced-motion: reduce) {
-  .mc-strip-inner,
-  .mc-vinyl-disc,
-  .mc-vinyl-swap,
-  .mc-swap-text {
-    animation: none;
-  }
-}
-
-.mc-progress {
-  margin-top: 24px;
-}
-
 /* ---------- Track change animations ---------- */
-
 .mc-vinyl-swap {
   animation: mc-record-in 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -160,36 +145,6 @@
   }
 }
 
-/* ---------- Mobile ---------- */
-@media (max-width: 640px) {
-  .mc-stage {
-    --vinyl: 110vw; /* wider than the screen; the sides get cropped */
-  }
-
-  .mc-panel {
-    padding: 16px 16px 20px;
-  }
-
-  .mc-title {
-    font-size: 40px;
-  }
-
-  .mc-player {
-    grid-template-columns: 36px 1fr 36px;
-    gap: 8px;
-  }
-
-  .mc-strip-inner {
-    display: flex;
-    width: max-content;
-    height: 100%;
-    animation: mc-marquee 40s linear infinite;
-  }
-
-
-}
-
-
 /* ---------- Player panel ---------- */
 .mc-panel {
   /* light colors for use over the dark vinyl */
@@ -199,8 +154,7 @@
 
   position: absolute;
   left: 50%;
-  /* vinyl center = 8% top margin + half its width */
-  top: calc(var(--vinyl) * 0.50);
+  top: calc(var(--vinyl) * 0.5);
   transform: translate(-50%, -50%);
   z-index: 2;
 
@@ -252,18 +206,12 @@
 }
 
 .mc-title {
-  grid-column: 2;   /* middle column */
+  grid-column: 2; /* middle column */
   min-width: 0;
-    margin: 0;
+  margin: 0;
   font-size: 40px;
   line-height: 1.1;
   color: white;
-  
-}
-
-.mc .mc-mute {
-  grid-column: 3;   /* right column, right next to the title */
-  justify-self: start;
 }
 
 .mc-artist {
@@ -304,10 +252,10 @@
   display: grid;
   place-items: center;
   padding: 0;
+  margin: 0;
   border: 0;
   border-radius: 50%;
   background: transparent;
-  margin: 0;  
   box-shadow: none;
   color: var(--ink);
   cursor: pointer;
@@ -322,7 +270,7 @@
 .mc .mc-nav {
   width: 60px;
   height: 60px;
-  justify-self: center; 
+  justify-self: center;
 }
 
 .mc .mc-nav:hover {
@@ -330,6 +278,8 @@
 }
 
 .mc .mc-mute {
+  grid-column: 3; /* right column, next to the title */
+  justify-self: start;
   width: 28px;
   height: 28px;
   color: var(--muted);
@@ -354,4 +304,35 @@
 
 .mc .mc-play:hover {
   opacity: 0.85;
+}
+
+/* ---------- Mobile (kept last so it overrides the rules above) ---------- */
+@media (max-width: 640px) {
+  .mc-stage {
+    --vinyl: 110vw; /* wider than the screen; the sides get cropped */
+  }
+
+  .mc-strip-group {
+    height: 100%;
+    animation-duration: 40s;
+  }
+
+  .mc-panel {
+    padding: 16px 16px 20px;
+  }
+
+  .mc-player {
+    grid-template-columns: 36px 1fr 36px;
+    gap: 8px;
+  }
+}
+
+/* ---------- Respect users who turn off animations ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .mc-strip-group,
+  .mc-vinyl-disc,
+  .mc-vinyl-swap,
+  .mc-swap-text {
+    animation: none;
+  }
 }
