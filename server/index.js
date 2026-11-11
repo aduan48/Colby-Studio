@@ -1,13 +1,22 @@
 import './env.js'; // must stay first so process.env is set before other files run
 import express from 'express';
+import { unlockRoutes, requireUnlock } from './middleware/siteLock.js';
 import availabilityRoutes from './routes/availability.js';
 import bookingRoutes from './routes/bookings.js';
 import eventBookingRoutes from './routes/eventBookings.js';
 import contactRoutes from './routes/contact.js';
+import { adminAuthRoutes } from './middleware/adminAuth.js';
+import adminRoutes from './routes/admin.js';
 
 const app = express();
 app.set('trust proxy', 1); // behind Nginx: req.ip is the visitor, not 127.0.0.1
 app.use(express.json());
+
+app.use('/api/unlock', unlockRoutes);
+app.use('/api', requireUnlock);
+
+app.use('/api/admin/auth', adminAuthRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.use('/api/availability', availabilityRoutes);
 app.use('/api/bookings', bookingRoutes);

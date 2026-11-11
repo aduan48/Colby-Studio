@@ -7,6 +7,7 @@ import Home from './pages/Home' // landing page stays eager so it shows instantl
 import { AnimatePresence } from 'framer-motion';
 import ScrollToTop from './ScrollToTop';
 import PageTransition from './components/PageTransition';
+import SiteGate from './components/SiteGate';
 
 const About = lazy(() => import('./pages/About'));
 const Request = lazy(() => import('./pages/Request'));
@@ -14,6 +15,7 @@ const BookingsPage = lazy(() => import('./pages/BookingsPage'));
 const Booking = lazy(() => import('./pages/Booking'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Archive = lazy(() => import('./pages/Archive'));
+const Admin = lazy(() => import('./pages/Admin'));
 
 /** Wraps a page in the transition + a placeholder while its code downloads */
 const page = (el) => (
@@ -35,6 +37,7 @@ function AnimatedRoutes() {
         <Route path="/privacy-policy" element={page(<PrivacyPolicy />)} />
         <Route path="/about" element={page(<About />)} />
         <Route path="/archive" element = {page(<Archive />)} />
+        <Route path="/admin" element={page(<Admin />)} />
       </Routes>
     </AnimatePresence>
   );
@@ -42,16 +45,18 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <ScrollToTop />
-        <Navbar />
-        <div className='pages'>
-          <AnimatedRoutes />
-          <Footer />
-        </div>
-      </Router>
-    </div>
+    <SiteGate>
+      <div className="App">
+        <Router>
+          <ScrollToTop />
+          <Navbar />
+          <div className='pages'>
+            <AnimatedRoutes />
+            <Footer />
+          </div>
+        </Router>
+      </div>
+    </SiteGate>
   )
 }
 
