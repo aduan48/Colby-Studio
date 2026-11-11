@@ -153,10 +153,6 @@ The `bookings` table in `server/bookings.db`:
 | `equipment`, `reference_tracks` | TEXT | Optional |
 | `created_at` | TEXT | Set automatically |
 
-Event requests are stored in the `event_bookings` table.
-
-<!-- TODO: add the event_bookings columns here -->
-
 Tables are created automatically on first run (`CREATE TABLE IF NOT EXISTS`), so a new server needs no migration step.
 
 ---
