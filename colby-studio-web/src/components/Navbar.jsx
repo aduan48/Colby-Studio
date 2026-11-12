@@ -22,7 +22,7 @@ function Navbar() {
         <NavLink to="/" > HOME </NavLink>
         <NavLink to="/about"> ABOUT </NavLink>
         <NavLink to="/archive"> ARCHIVE </NavLink>
-        <NavLink to="/booking"> BOOK US </NavLink>
+        <NavLink to="/booking"> BOOK </NavLink>
      </div>
             
       <div className='rightSide'> 

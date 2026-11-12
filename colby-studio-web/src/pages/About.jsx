@@ -7,9 +7,9 @@ import '../styles/About.css'
 
 const FACTS = [
   { label: 'Where', value: 'Gordon Center, basement' },
-  { label: 'Sessions', value: '2–4 hours' },
+  { label: 'SESSION LENGTH', value: '2–4 hours' },
   { label: 'Run by', value: 'Colby Student engineers' },
-  { label: 'Join Us for Mix Club', value: 'Mondays, 4:30' },
+  { label: 'Join Us for Mix Club', value: 'Mondays, 4:45' },
 ]
 
 const STEPS = [
@@ -98,14 +98,11 @@ function About() {
     <main className="about-page">
       {/* ---------- Hero ---------- */}
       <header className="ap-hero">
-        <p className="ap-kicker">About The Studio</p>
+        <p className='ap-kicker'>About us</p>
         <h1 className="ap-title">
           WELCOME to <span>the studio at colby</span>
         </h1>
-        <p className="ap-lede">
-          A student-run recording studio in the basement of the Gordon Center,
-          open to anyone at Colby.
-        </p>
+
 
         <dl className="ap-facts">
           {FACTS.map((f) => (
@@ -120,7 +117,6 @@ function About() {
       {/* ---------- 01 The space ---------- */}
       <section className="ap-section">
         <div className="ap-label">
-          <span className="ap-num">01</span>
           <h2>The space</h2>
         </div>
         <div className="ap-body">
@@ -136,7 +132,6 @@ function About() {
 
       <section className="ap-section">
         <div className="ap-label">
-          <span className="ap-num">02</span>
           <h2>Meet the supervisor</h2>
         </div>
         <div className="ap-body">
@@ -164,7 +159,6 @@ function About() {
       {/* ---------- 02 How it works ---------- */}
       <section className="ap-section">
         <div className="ap-label">
-          <span className="ap-num">03</span>
           <h2>How it works</h2>
         </div>
         <div className="ap-body">
@@ -185,7 +179,6 @@ function About() {
       {/* ---------- 03 The engineers ---------- */}
       <section className="ap-section">
         <div className="ap-label">
-          <span className="ap-num">04</span>
           <h2>The engineers</h2>
         </div>
         <div className="ap-body">
@@ -233,7 +226,6 @@ function About() {
       {/* ---------- 04 Mix Club ---------- */}
       <section className="ap-section">
         <div className="ap-label">
-          <span className="ap-num">05</span>
           <h2>Mix Club</h2>
         </div>
         <div className="ap-body">

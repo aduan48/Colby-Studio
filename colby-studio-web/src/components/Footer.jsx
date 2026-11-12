@@ -68,7 +68,7 @@ function Footer() {
             <br />
             Waterville, ME 04901
           </address>
-          <p className="footer__note">Mix Club meets Mondays at 4:30&nbsp;p.m.</p>
+          <p className="footer__note">Mix Club meets Mondays at 4:45&nbsp;p.m.</p>
         </div>
       </div>
 

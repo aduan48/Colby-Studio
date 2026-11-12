@@ -43,7 +43,7 @@
 }
 
 .archive-page .archive-title {
-  margin: 0 0 28px;
+  margin: 0 0 -20px;
   font-size: clamp(3.5rem, 8vw, 5.75rem);
   line-height: 0.98;
   letter-spacing: -0.02em;
@@ -53,12 +53,6 @@
   color: var(--secondary-accent);
 }
 
-.archive-lede {
-  margin: 0;
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: #333;
-}
 
 /* ---------- Numbered section ---------- */
 .archive-section {
@@ -75,12 +69,6 @@
   align-self: start;
 }
 
-.archive-num {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--secondary-accent);
-  font: 500 0.85rem var(--mono);
-}
 
 .archive-page .archive-label h2 {
   margin: 0;

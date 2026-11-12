@@ -86,13 +86,10 @@ function Archive() {
     <div>
         <div className='archive-page'>
         <header className="archive-hero">
-            <p className="archive-kicker">The Studio at Colby Archive</p>
+          <p className='archive-kicker'>Archive</p>
             <h1 className="archive-title">
             The Studio at Colby <span>ARCHIVE</span>
             </h1>
-            <p className="archive-lede">
-            Explore this page to see our featrured news articles and the full archive of songs made in the studio. 
-            </p>
         </header>
 
         <section className="archive-section" aria-labelledby="news-heading">
