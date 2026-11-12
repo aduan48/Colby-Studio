@@ -345,7 +345,7 @@ The admin login keeps working on its own after the site lock is gone.
 | Add or edit an engineer | `ENGINEERS` array in `pages/About.jsx` |
 | Add a news story or playlist | `NEWS` and `PLAYLISTS` arrays in `pages/Archive.jsx` |
 | Change which days can be booked | `disabled` prop on `<DayPicker>` in `pages/Booking.jsx` |
-| Change available time slots | `server/routes/availability.js` |
+| Change available time slots | `server/slots.js` |
 | Edit the confirmation email | `server/routes/bookings.js`, `server/routes/eventBookings.js` or `server/routes/contact.js` |
 | Show another table on the admin page | Add it to the `TABLES` allowlist in `server/routes/admin.js` |
 | Change the site or admin password | Edit `server/.env`, then `pm2 restart studio-api --update-env` |
