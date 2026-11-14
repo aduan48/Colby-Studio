@@ -7,7 +7,19 @@ This walks through one feature end to end: a user booking a studio session.
 2. **Availability route (Express):** `server/routes/availability.js`
    Validates the request and checks the requested time slot against the database for conflicts.
 3. **Booking logic (Express + SQLite):** `server/routes/bookings.js`
-   Once a booking is submitted, it sanitizes the input, saves the booking to the database, writes the information in a google sheet, and sends a confirmation email.
+   Once a booking is submitted, it sanitizes the input, saves the booking to the database, writes the information in a google sheet (`asset-library/demos/code.gs`), and sends a confirmation email.
+
+## Demo
+
+![Booking a studio session](asset-library/demo/demo.gif)
+
+### Confirmation Email
+
+![Confirmation Email](asset-library/demo/confirmation_email_demo.png)
+
+### Sheets Database
+
+![Sheets Demo](asset-library/demo/sheets_demo.png)
 
 ## Development Process
 

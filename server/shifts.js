@@ -35,6 +35,13 @@ export default [
     "Length": 4,
   },
   {
+    "Manager": "Alex Duan",
+    "Day": "Thu",
+    "Email": "ajduan29@colby.edu",
+    "Time-Start": 15,
+    "Length": 4,
+  },
+  {
     "Manager": "Rafi Aronson",
     "Day": "Fri",
     "Email": "rkaron27@colby.edu",
@@ -44,3 +51,4 @@ export default [
 ];
 
 //rkaronson27@colby.edu
+//ajduan29@colby.edu
