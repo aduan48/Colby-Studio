@@ -6,6 +6,26 @@ const router = Router();
 const clip = (s, max) => String(s ?? '').trim().slice(0, max);
 const SECRETARY_EMAIL = 'ajduan29@colby.edu'; //process.env.SECRETARY_EMAIL// "zcpale29@colby.edu"
 
+/**
+ * POST /api/contact
+ *
+ * Handles the site's contact form. Nothing is stored; the message is sent as an email.
+ *
+ * Request body (JSON):
+ *   { name, email, message }
+ *
+ * Steps:
+ *   1. Sanitizes the input (trims whitespace and caps each field's length).
+ *   2. Validates that a name and a valid email were provided.
+ *   3. Emails the message to the sender as a receipt, cc'ing the studio inbox and the
+ *      secretary so staff see every submission. All user text is HTML-escaped first.
+ *
+ * Responses:
+ *   201 { ok: true }   message sent
+ *   400 { error }      missing name or invalid email
+ *   500 { error }      the email failed to send (unlike bookings, there's no saved
+ *                      record, so a failed email means the message was lost)
+ */
 router.post('/', async (req, res) => {
     const { name, email, message } = req.body ?? {};
 

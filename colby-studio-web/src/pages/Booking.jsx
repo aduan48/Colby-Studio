@@ -11,9 +11,11 @@ const MUSIC_OPTIONS = [
   { value: 'neither', label: 'Neither' },
 ];
 
-const LAST_DAY = new Date(2026, 11, 12);
+const LAST_DAY = new Date(2026, 11, 12); //the last avaiable date to pick slots
 
-/** Like useState, but loads from and saves to localStorage */
+/** Like useState, but loads from and saves to localStorage 
+ * On first load: it looks for a saved value under key. If it finds one, it uses that. Otherwise, it uses initial.
+*/
 function useLocalStorage(key, initial) {
   const [value, setValue] = useState(() => {
     try {
@@ -33,14 +35,20 @@ function useLocalStorage(key, initial) {
   return [value, setValue];
 }
 
+/**
+ * 
+ * @returns A Booking page that uses a react-day-picker and a form to display avaialble slots.
+ * It fetches new avaulablity slots from /api/availability
+ * Once submitted, the form is sent as a JSON to /api/bookings
+ */
 export default function Booking() {
-  const [slots, setSlots] = useState([]);
-  const [status, setStatus] = useState('');
+  const [slots, setSlots] = useState([]);//Time slots for the selected day, from the server
+  const [status, setStatus] = useState('');//the state of the request sent to the back end
 
-  const [dayStr, setDayStr] = useLocalStorage('booking:day', null);
+  const [dayStr, setDayStr] = useLocalStorage('booking:day', null);//The selected day, stored as a string
   const day = dayStr ? new Date(dayStr) : undefined;
 
-  const [selected, setSelected] = useLocalStorage('booking:selected', null);
+  const [selected, setSelected] = useLocalStorage('booking:selected', null);//The selected time slot
   const [form, setForm] = useLocalStorage('booking:form', {
     name: '',
     email: '',
@@ -50,7 +58,14 @@ export default function Booking() {
     referenceTracks: '',
   });
 
-  /** Fetches open time slots for the chosen day, and drops a saved time that's no longer free */
+  /** Fetches open time slots for the chosen day, and drops a saved time that's no longer free 
+   * The get looks like this:
+   * [
+   *    { "start": "2026-11-20T13:00", "length": 60, "manager": "John", "available": true },
+   *    { "start": "2026-11-20T14:00", "length": 60, "manager": "John", "available": false }, //already booked
+   *    { "start": "2026-11-20T15:00", "length": 90, "manager": "Sam", "available": true }
+   *  ]
+  */
   const loadSlots = async (d) => {
     const res = await fetch(`/api/availability?date=${format(d, 'yyyy-MM-dd')}`);
     const data = await res.json();
@@ -79,14 +94,29 @@ export default function Booking() {
     setStatus('');
   };
 
+  /** Makes sure that chanegs in the text boxes are saved in the form data object */
   const handleChanges = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  /**
+   * This is the submit logic
+   * 
+   * This is a sample of what the JSON sent to the back end looks like
+   * {
+   *    "start": "2026-11-20T14:00:00",
+   *    "name": "Jon Doe",
+   *    "email": "generic@colby.edu",
+   *    "musicMajor": "minor",
+   *    "toAccomplish": "Record a demo for a 3-piece band: drums, bass, and guitar with vocals.",
+   *    "equipment": "A second guitar amp",
+   *    "referenceTracks": "https://open.spotify.com/track/..."
+   *  }
+   */
   const book = async (e) => {
     e.preventDefault();
-    setStatus('Booking…');
+    setStatus('Booking…'); //tells users that the booking is hapnning 
     const res = await fetch('/api/bookings', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -98,8 +128,7 @@ export default function Booking() {
       setStatus('Booked! Check your email.');
       setSelected(null);
       setDayStr(null);
-      // keep name/email/major for next time, clear the session-specific answers
-      setForm((f) => ({ ...f, toAccomplish: '', equipment: '', referenceTracks: '' }));
+      setForm((f) => ({ ...f, toAccomplish: '', equipment: '', referenceTracks: '' })); //clears form except for name and email and music major to make form easier for next time
     } else {
       setStatus(data.error);
       loadSlots(day); // refresh so a just-taken slot greys out
@@ -140,7 +169,7 @@ export default function Booking() {
                   disabled={!s.available}
                   onClick={() => setSelected(s.start)}
                 >
-                  {s.start.slice(11, 16)}  <br /> {s.manager}
+                  {s.start.slice(11, 16)} {/* Just the time slot and not the date*/}  <br /> {s.manager}
                 </button>
               ))}
             </div>

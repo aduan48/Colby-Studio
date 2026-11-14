@@ -6,10 +6,31 @@ const router = Router();
 const clip = (s, max) => String(s ?? '').trim().slice(0, max);
 const SECRETARY_EMAIL = process.env.SECRETARY_EMAIL;// "zcpale29@colby.edu"
 
+/**
+ * POST /api/live-recording
+ *
+ * Handles requests for the studio to record a live event, such as a concert or ensemble
+ * performance. Unlike session bookings, these aren't tied to the shift schedule or saved
+ * to the database: each request is emailed to staff to review and confirm manually.
+ *
+ * Request body (JSON):
+ *   { date, start_time, duration, name, email, group,
+ *     toAccomplish, equipment, additional }
+ *
+ * Steps:
+ *   1. Sanitizes the text fields (trims whitespace and caps each field's length).
+ *   2. Validates the request: the date can't be in the past, and a name, a valid
+ *      email, a goal, and a group name are required.
+ *   3. Emails the request to the sender as a receipt, cc'ing the studio account
+ *      and the secretary.
+ *
+ * Responses:
+ *   201 { ok: true }   request sent
+ *   400 { error }      invalid or missing input
+ *   500 { error }      the email failed to send (nothing is saved, so the request is lost)
+ */
 router.post('/', async (req, res) => {
-  // TODO
   const { request_date, start_time, duration, name, email, group, toAccomplish, equipment, additional } = req.body ?? {};
-  const date = typeof request_date === 'string' ? request_date.slice(0, 10) : null;
 
   const cleanName = clip(name, 100);
   const cleanEmail = clip(email, 200);

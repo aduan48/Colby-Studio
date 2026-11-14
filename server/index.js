@@ -12,6 +12,7 @@ const app = express();
 app.set('trust proxy', 1); // behind Nginx: req.ip is the visitor, not 127.0.0.1
 app.use(express.json());
 
+//to unlock the site
 app.use('/api/unlock', unlockRoutes);
 app.use('/api', requireUnlock);
 

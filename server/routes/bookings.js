@@ -5,20 +5,46 @@ import { slotsForDate } from '../slots.js';
 
 const router = Router();
 
-const MUSIC_OPTIONS = ['major', 'minor', 'undecided', 'neither'];
+const MUSIC_OPTIONS = ['major', 'minor', 'undecided', 'neither']; //music opstions
 const SECRETARY_EMAIL = process.env.SECRETARY_EMAIL;// "zcpale29@colby.edu"
-const clip = (s, max) => String(s ?? '').trim().slice(0, max);
-const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL; 
+const clip = (s, max) => String(s ?? '').trim().slice(0, max); //helper method that trims a srring to a certain size
+const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL; //the sheet to send info to
 
-// POST /api/bookings
+/**
+ * POST /api/bookings
+ *
+ * Creates a studio booking from the booking form.
+ *
+ * Request body (JSON):
+ *   { start, name, email, musicMajor, toAccomplish, equipment, referenceTracks }
+ *
+ * Steps:
+ *   1. Sanitizes every field (trims, caps length, restricts musicMajor to known options).
+ *   2. Validates the booking: the slot must exist in the schedule, be in the future,
+ *      and include a name, a valid email, and a session goal.
+ *   3. Saves the booking to SQLite. A UNIQUE constraint on start_time guarantees a slot
+ *      can only be booked once, even if two people submit at the same moment.
+ *   4. Emails a confirmation to the user, cc'ing the slot's studio manager and the secretary.
+ *   5. Responds to the client, then logs the booking to a Google Sheet in the background.
+ *
+ * Responses:
+ *   201 { ok: true }   booking saved
+ *   400 { error }      invalid slot or form input
+ *   409 { error }      slot was just taken by someone else
+ *   500 { error }      unexpected database error
+ *
+ * A failed email or Sheets request is logged but does not fail the booking,
+ * since the database is the source of truth.
+ */
 router.post('/', async (req, res) => {
   const { start, name, email, musicMajor, toAccomplish, equipment, referenceTracks } = req.body ?? {};
   
-  const STUDIO_EMAIL = process.env.STUDIO_EMAIL;
+  const STUDIO_EMAIL = process.env.STUDIO_EMAIL; 
 
   const date = typeof start === 'string' ? start.slice(0, 10) : null;
-  const slot = date ? slotsForDate(date).find(s => s.start === start) : null;
+  const slot = date ? slotsForDate(date).find(s => s.start === start) : null; //find the matchign slot with the start time
 
+  //cleans the responses 
   const cleanName = clip(name, 100);
   const cleanEmail = clip(email, 200);
   const cleanGoal = clip(toAccomplish, 2000);
@@ -26,12 +52,14 @@ router.post('/', async (req, res) => {
   const cleanRefs = clip(referenceTracks, 1000);
   const cleanMajor = MUSIC_OPTIONS.includes(musicMajor) ? musicMajor : 'undecided';
 
+  //validates the selections
   if (!slot) return res.status(400).json({ error: 'That time slot does not exist' });
   if (new Date(start) < new Date()) return res.status(400).json({ error: 'That time has already passed' });
   if (!cleanName) return res.status(400).json({ error: 'Please enter your name' });
   if (!/^\S+@\S+\.\S+$/.test(cleanEmail)) return res.status(400).json({ error: 'Please enter a valid email' });
   if (!cleanGoal) return res.status(400).json({ error: 'Please describe what you want to accomplish' });
 
+  //inserts the new booking into the db
   try {
     db.prepare(`
       INSERT INTO bookings (start_time, name, email, music_major, to_accomplish, equipment, reference_tracks)
@@ -44,6 +72,7 @@ router.post('/', async (req, res) => {
     return res.status(500).json({ error: 'Server error' });
   }
 
+  //components for the email
   const when = start.replace('T', ' at ');
   const details = `
     <p><b>When:</b> ${when} (${slot.length} hr)<br>
@@ -52,6 +81,7 @@ router.post('/', async (req, res) => {
        <b>Equipment:</b> ${nl2br(cleanEquipment) || 'None'}<br>
        <b>Reference tracks:</b> ${nl2br(cleanRefs) || 'None'}</p>`;
 
+  //sends the email
   try {
     await mailer.sendMail({
       from: `Studio at Colby <${STUDIO_EMAIL}>`,
@@ -69,6 +99,7 @@ router.post('/', async (req, res) => {
 
   res.status(201).json({ ok: true });
 
+  //send the info to the google sheet adding in a timestamp as well
   if (!GOOGLE_SCRIPT_URL) return console.warn('GOOGLE_SCRIPT_URL not set; skipping Sheets');
 
     try {
