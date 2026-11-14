@@ -11,15 +11,15 @@ This walks through one feature end to end: a user booking a studio session.
 
 ## Demo
 
-![Booking a studio session](asset-library/demo/demo.gif)
+![Booking a studio session](asset-library/demos/demo.gif)
 
 ### Confirmation Email
 
-![Confirmation Email](asset-library/demo/confirmation_email_demo.png)
+![Confirmation Email](asset-library/demos/confirmation_email_demo.png)
 
 ### Sheets Database
 
-![Sheets Demo](asset-library/demo/sheets_demo.png)
+![Sheets Demo](asset-library/demos/sheets_demo.png)
 
 ## Development Process
 
