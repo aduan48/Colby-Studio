@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom'
 import MusicCarousel from '../components/MusicCarousel'
 import Contact from '../components/Contact'
 import supervisor from '../assets/supervisor.webp'
+import Carousel from '../components/Carousel'
 import '../styles/About.css'
 
 const FACTS = [
@@ -223,6 +224,7 @@ function About() {
         <figcaption>Rafi Aronson ’27, engineer</figcaption>
       </figure>
 
+
       {/* ---------- 04 Mix Club ---------- */}
       <section className="ap-section">
         <div className="ap-label">
@@ -241,6 +243,8 @@ function About() {
           </p>
         </div>
       </section>
+
+      <Carousel />
 
       {/* ---------- CTA ---------- */}
       <section className="ap-cta">

@@ -7,13 +7,15 @@ import HowItWorks from "../components/HowItWorks";
 import StudioTicker from "../components/StudioTicker";
 import '../styles/Home.css';
 import { NavLink } from 'react-router-dom';
+import Carousel from '../components/Carousel';
 
 function Home() {
   return (
     <div className='home'>
       <Hero />
-      <HowItWorks />
       <StudioTicker />
+      <HowItWorks />
+      <Carousel />
       <InfoSection />
        <div className="info-section-buttons">
           <NavLink to="/studio-booking" className="info-btn">

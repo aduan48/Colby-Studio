@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Contact from '../components/Contact'
 import "../styles/Archive.css"
+import Carousel from '../components/Carousel'
 
 const PLAYLISTS = [
   {
@@ -102,6 +103,9 @@ function Archive() {
                 <NewsItem key={item.link} item={item} />
                 ))}
             </ol>
+        </section>
+        <section> 
+               <Carousel />
         </section>
 
         <section className="archive-section" aria-labelledby="tracks-heading">

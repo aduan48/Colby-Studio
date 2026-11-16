@@ -1,0 +1,66 @@
+/* --- CAROUSEL --- */
+.carousel {
+  --gap: 2.5rem;          /* space between photos */
+  --speed: 48s;         /* time for one full set of photos to pass; higher = slower */
+  --height: 45vh;      /* photo height */
+
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  scrollbar-width: none;  
+
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;             /* hides the scrollbar in Chrome and Safari */
+}
+
+/* One full set of photos. padding-right matches the gap, so sliding by
+   exactly -100% lines the next copy up perfectly. */
+.group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--gap);
+  padding-right: var(--gap);
+}
+
+.group.animate {
+  animation: carousel-scroll var(--speed) linear infinite;
+}
+
+@keyframes carousel-scroll {
+  to { transform: translateX(-100%); }
+}
+
+.card {
+  display: block;
+  flex-shrink: 0;
+  height: var(--height);
+  width: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  user-select: none;
+}
+
+/* Pause while hovering, so visitors can look at a photo */
+.carousel:hover .group {
+  animation-play-state: paused;
+}
+
+/* Smaller photos on phones */
+@media (max-width: 640px) {
+  .carousel {
+    --height: 240px;
+    --gap: 0.75rem;
+  }
+}
+
+/* Respect visitors who turn off animations in their system settings */
+@media (prefers-reduced-motion: reduce) {
+  .group.animate {
+    animation: none;
+  }
+  .carousel {
+    overflow-x: auto;
+  }
+}
