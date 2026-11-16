@@ -104,9 +104,8 @@ function Archive() {
                 ))}
             </ol>
         </section>
-        <section> 
                <Carousel />
-        </section>
+
 
         <section className="archive-section" aria-labelledby="tracks-heading">
         <div className="archive-label">

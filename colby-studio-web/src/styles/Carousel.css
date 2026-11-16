@@ -1,22 +1,19 @@
 /* --- CAROUSEL --- */
 .carousel {
-  --gap: 2.5rem;          /* space between photos */
-  --speed: 48s;         /* time for one full set of photos to pass; higher = slower */
-  --height: 45vh;      /* photo height */
+  --gap: 2.5rem;        /* space between photos */
+  --speed: 40s;         /* time for one full set of photos to pass; higher = slower */
+  --height: 45vh;       /* photo height */
 
-  display: flex;
+  display: flex;        /* copies sit side by side */
   width: 100%;
   overflow: hidden;
-  scrollbar-width: none;  
-
 }
 
-.carousel::-webkit-scrollbar {
-  display: none;             /* hides the scrollbar in Chrome and Safari */
+.carousel + * {
+  border-top: none !important;
 }
 
-/* One full set of photos. padding-right matches the gap, so sliding by
-   exactly -100% lines the next copy up perfectly. */
+/* One full set of photos */
 .group {
   display: flex;
   flex-shrink: 0;
@@ -59,8 +56,5 @@
 @media (prefers-reduced-motion: reduce) {
   .group.animate {
     animation: none;
-  }
-  .carousel {
-    overflow-x: auto;
   }
 }
